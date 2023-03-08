@@ -1,20 +1,8 @@
-import { GetAllSubUsersResponse, User, UserType } from "../models";
+import {  User } from "../models";
 import { AxiosService } from "./axios.service";
 
 const getAll = (): Promise<User[]> => {
   let result$ = AxiosService.get<User[]>(`users/get`);
-  return result$;
-};
-
-const getByUserType = (userType: UserType): Promise<User[]> => {
-  let result$ = AxiosService.get<User[]>(`users/get/${userType}`);
-  return result$;
-};
-
-const getAllSubUsers = () => {
-  let result$ = AxiosService.get<GetAllSubUsersResponse[]>(
-    `users/get-all-sub-users`
-  );
   return result$;
 };
 
@@ -38,6 +26,4 @@ export const UserService = {
   insert,
   modify,
   remove,
-  getByUserType,
-  getAllSubUsers,
 };

@@ -1,3 +1,3 @@
 export default {
-  title: 'أكادمية العثمان'
+  title: "Stok Yönetim Sistemi",
 };

@@ -39,7 +39,7 @@ export default function () {
   });
 
   loadMessages(arMessages);
-  locale("ar-SY");
+  locale("en-US");
 
   return (
     <Router>

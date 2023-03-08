@@ -16,32 +16,12 @@ export default (props: any) => {
   }, [currentPath, setNavigationData]);
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>الصفحة الرئيسية</h2>
+      <h2 className={"content-block"}>{appInfo.title}</h2>
       <div className={"content-block"}>
         <div className={"dx-card responsive-paddings"}>
           <div className={"logos-container"}>
             <img src={process.env.PUBLIC_URL + "/el-othman.png"} alt="logo" />
           </div>
-
-          <p>
-            أهلاً وسهلاً بكم في{" "}
-            <b>
-              <a
-                href={"https://www.facebook.com/elosmanakademi"}
-                target={"_blank"}
-                rel={"noopener noreferrer"}
-              >
-                {appInfo.title}
-              </a>
-            </b>
-            !
-          </p>
-          <p>أكادمية العثمان توفّر التالي:</p>
-          <ul>
-            <li>دورات لغات</li>
-            <li>دورات تدريبية</li>
-            <li>دورات تقوية</li>
-          </ul>
         </div>
       </div>
     </React.Fragment>
