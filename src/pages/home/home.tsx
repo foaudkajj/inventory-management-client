@@ -20,7 +20,7 @@ export default (props: any) => {
       <div className={"content-block"}>
         <div className={"dx-card responsive-paddings"}>
           <div className={"logos-container"}>
-            <img src={process.env.PUBLIC_URL + "/el-othman.png"} alt="logo" />
+            {/* <img src={process.env.PUBLIC_URL + "/el-othman.png"} alt="logo" /> */}
           </div>
         </div>
       </div>
