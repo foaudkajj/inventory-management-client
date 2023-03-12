@@ -34,10 +34,6 @@ function App() {
 export default function () {
   const screenSizeClass = useScreenSizeClass();
 
-  config({
-    rtlEnabled: true,
-  });
-
   loadMessages(arMessages);
   locale("en-US");
 

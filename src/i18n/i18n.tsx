@@ -17,8 +17,8 @@ i18n
         translation: ar,
       },
     },
-    lng: "ar", // if you're using a language detector, do not define the lng option
-    fallbackLng: "ar",
+    lng: "tr", // if you're using a language detector, do not define the lng option
+    fallbackLng: "tr",
 
     interpolation: {
       escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
