@@ -6,6 +6,7 @@ import { SideNavInnerToolbar as SideNavBarLayout } from "./layouts";
 import { Footer } from "./components";
 import Profile from "./pages/profile/profile";
 import Home from "./pages/home/home";
+import { Colors } from "./pages";
 
 export default function () {
   return (
@@ -13,10 +14,11 @@ export default function () {
       <Routes>
         <Route path="/home" element={<Home currentPath={"/home"} />} />
         <Route path="/profile" element={<Profile currentPath={"/profile"} />} />
+        <Route path="/colors" element={<Colors currentPath={"/colors"} />} />
         <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
       <Footer>
-        Copyright © 2011-2019 Developer Express Inc.
+        Copyright © 2011-2023 İbo oğulları.
         <br />
         All trademarks or registered trademarks are property of their respective
         owners.
