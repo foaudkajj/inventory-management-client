@@ -10,3 +10,4 @@ export * from "./role.model";
 export * from "./permission.model";
 export * from "./role-permission.model";
 export * from "./currency.model";
+export * from "./color.model";
