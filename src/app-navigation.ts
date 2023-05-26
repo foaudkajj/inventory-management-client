@@ -4,6 +4,17 @@ export const navigation: NavigationItem[] = [
     path: "/home",
     icon: "home",
   },
+
+  {
+    text: "navigation.core-data",
+    icon: "folder",
+    items: [
+      {
+        text: "Currencies",
+        path: "/currencies",
+      },
+    ],
+  },
   // {
   //   text: "Examples",
   //   icon: "folder",
@@ -18,11 +29,12 @@ export const navigation: NavigationItem[] = [
   //     },
   //   ],
   // },
+  
 ];
 
 type NavigationItem = {
   text: string;
-  path: string;
-  icon: string;
+  path?: string;
+  icon?: string;
   items?: NavigationItem[];
 };
