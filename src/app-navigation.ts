@@ -12,8 +12,13 @@ export const navigation: NavigationItem[] = [
         text: "Colors",
         path: "/colors",
       },
+      {
+        text: "Currencies",
+        path: "/currencies",
+      },
     ],
   },
+ 
 ];
 
 type NavigationItem = {

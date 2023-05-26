@@ -6,6 +6,7 @@ import { SideNavInnerToolbar as SideNavBarLayout } from "./layouts";
 import { Footer } from "./components";
 import Profile from "./pages/profile/profile";
 import Home from "./pages/home/home";
+import { Currencies } from "./pages";
 import { Colors } from "./pages";
 
 export default function () {
@@ -16,6 +17,7 @@ export default function () {
         <Route path="/profile" element={<Profile currentPath={"/profile"} />} />
         <Route path="/colors" element={<Colors currentPath={"/colors"} />} />
         <Route path="*" element={<Navigate to="/home" />} />
+        <Route path="/currencies" element={<Currencies currentPath={"/currencies"} />} />
       </Routes>
       <Footer>
         Copyright © 2011-2023 İbo oğulları.
