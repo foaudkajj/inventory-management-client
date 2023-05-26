@@ -20,7 +20,13 @@ export default (props: any) => {
   const onColorInserted = (e) => {
     ColorService.insert(e.data);
   };
+const onColorUpdated=(e) =>{
+ColorService.modify(e.data.id,e.data);
+}
 
+  const onColorRemoved =(e)=>{
+ColorService.remove(e.data.id);
+  };
   return (
     <React.Fragment>
       <h2 className={"content-block"}>Colors</h2>
@@ -31,6 +37,8 @@ export default (props: any) => {
           dataSource={colors}
           showBorders={true}
           onRowInserted={onColorInserted}
+          onRowUpdated={onColorUpdated}
+          onRowRemoved={onColorRemoved}
         >
           <Editing
             mode="form"
