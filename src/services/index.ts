@@ -4,3 +4,4 @@ export * from "./dx-store.service";
 export * from "./get.service";
 export * from "./user.service";
 export * from "./auth.service";
+export * from "./colors.service";
