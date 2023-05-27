@@ -8,6 +8,7 @@ import Profile from "./pages/profile/profile";
 import Home from "./pages/home/home";
 import { Currencies } from "./pages";
 import { Colors } from "./pages";
+import Branches from "./pages/branches/branches";
 
 export default function () {
   return (
@@ -18,6 +19,8 @@ export default function () {
         <Route path="/colors" element={<Colors currentPath={"/colors"} />} />
         <Route path="*" element={<Navigate to="/home" />} />
         <Route path="/currencies" element={<Currencies currentPath={"/currencies"} />} />
+        <Route path="/branches" element={<Branches currentPath={"/branches"} />} />
+
       </Routes>
       <Footer>
         Copyright © 2011-2023 İbo oğulları.

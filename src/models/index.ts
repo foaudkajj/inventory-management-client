@@ -11,3 +11,5 @@ export * from "./permission.model";
 export * from "./role-permission.model";
 export * from "./currency.model";
 export * from "./color.model";
+export * from "./city.model";
+export * from "./branch.model";
