@@ -1,7 +1,6 @@
 import { DataGrid } from "devextreme-react";
 import { Column, Editing, Lookup, RequiredRule } from "devextreme-react/data-grid";
 import React, { useEffect, useState } from "react";
-import { Branch, City, Country } from "../../models";
 import { BranchService, CityService, CountryService } from "../../services";
 import "./branches.scss";
 
@@ -10,18 +9,18 @@ export default (props: any) => {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
 
-
   useEffect(() => {
-    BranchService.getAll().then((branches: Branch[]) => {
-      setBranches(branches);
-    });
-    CountryService.getAll().then((countries: Country[]) => {
-      setCountries(countries);
-    });
-    CityService.getAll().then((cities: City[]) => {
-      setCities(cities);
-    })
-  }, []);
+    const branches$ = BranchService.getAll();
+    const countries$ = CountryService.getAll();
+    const cities$ = CityService.getAll();
+    let promises = [branches, countries, cities];
+    Promise.all(promises)
+      .then((result) => {
+        setBranches(result[0])
+        setCountries(result[1]);
+        setCities(result[2]);
+      });
+  }, [])
 
   const onBranchInserted = (e) => {
     console.log(e);
@@ -33,7 +32,7 @@ export default (props: any) => {
   const onBranchRemoved = (e) => {
     BranchService.remove(e.data.id);
   };
-//TODO
+  //TODO
   const setMerchantIdDefault = (e) => {
     e.data.merchantId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
   }
