@@ -13,7 +13,7 @@ export default (props: any) => {
     const branches$ = BranchService.getAll();
     const countries$ = CountryService.getAll();
     const cities$ = CityService.getAll();
-    let promises = [branches, countries, cities];
+    let promises = [branches$, countries$, cities$];
     Promise.all(promises)
       .then((result) => {
         setBranches(result[0])
