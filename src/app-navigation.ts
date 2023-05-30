@@ -20,6 +20,10 @@ export const navigation: NavigationItem[] = [
         text: "Branches",
         path: "/branches",
       },
+      {
+        text: "Users",
+        path: "/users",
+      },
     ],
   },
  

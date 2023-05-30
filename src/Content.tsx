@@ -9,6 +9,7 @@ import Home from "./pages/home/home";
 import { Currencies } from "./pages";
 import { Colors } from "./pages";
 import Branches from "./pages/branches/branches";
+import Users from "./pages/users/users";
 
 export default function () {
   return (
@@ -20,7 +21,7 @@ export default function () {
         <Route path="*" element={<Navigate to="/home" />} />
         <Route path="/currencies" element={<Currencies currentPath={"/currencies"} />} />
         <Route path="/branches" element={<Branches currentPath={"/branches"} />} />
-
+        <Route path="/users" element={<Users currentPath={"/users"} />} />
       </Routes>
       <Footer>
         Copyright © 2011-2023 İbo oğulları.

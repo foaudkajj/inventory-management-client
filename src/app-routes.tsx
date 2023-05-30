@@ -1,5 +1,6 @@
 import { withNavigationWatcher } from "./contexts/navigation";
 import { Branches, Colors,Currencies, HomePage, ProfilePage } from "./pages";
+import Users from "./pages/users/users";
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
   {
     path: "/branches",
     component: <Branches />,
+  },
+  {
+    path: "/users",
+    component: <Users />,
   },
 ];
 
