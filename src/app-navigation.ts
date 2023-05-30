@@ -16,6 +16,10 @@ export const navigation: NavigationItem[] = [
         text: "Currencies",
         path: "/currencies",
       },
+      {
+        text: "Branches",
+        path: "/branches",
+      },
     ],
   },
  

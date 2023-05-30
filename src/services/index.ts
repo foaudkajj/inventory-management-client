@@ -6,3 +6,6 @@ export * from "./user.service";
 export * from "./auth.service";
 export * from "./currencies.service";
 export * from "./colors.service";
+export * from "./countries.service";
+export * from "./cities.service";
+export * from "./branches.service";
