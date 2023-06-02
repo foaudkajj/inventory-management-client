@@ -14,3 +14,4 @@ export * from "./color.model";
 export * from "./city.model";
 export * from "./branch.model";
 export * from "./merchant.model";
+export * from "./payment-method.model";

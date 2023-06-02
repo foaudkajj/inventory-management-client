@@ -28,7 +28,10 @@ export const navigation: NavigationItem[] = [
         text: "GenericLists ",
         path: "/genericLists",
       },
-
+      {
+        text: "PaymentMethods ",
+        path: "/paymentMethods",
+      },
     ],
   },
 

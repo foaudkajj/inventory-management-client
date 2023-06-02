@@ -11,3 +11,4 @@ export * from "./cities.service";
 export * from "./branches.service";
 export * from "./generic-lists.service";
 export * from "./generic-list-items.service";
+export * from "./payment-method.service";
