@@ -22,12 +22,13 @@ client.interceptors.response.use(
   }
 );
 
-async function get<T>(url: string) {
+async function get<T>(url: string, params?: object) {
   try {
     const result = await client.request<T, AxiosResponse<T>>({
       method: "GET",
       url,
       responseType: "json",
+      params: params
     });
     return result.data;
   } catch (e) {
