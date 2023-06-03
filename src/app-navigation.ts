@@ -24,9 +24,14 @@ export const navigation: NavigationItem[] = [
         text: "Users",
         path: "/users",
       },
+      {
+        text: "GenericLists ",
+        path: "/genericLists",
+      },
+
     ],
   },
- 
+
 ];
 
 type NavigationItem = {
