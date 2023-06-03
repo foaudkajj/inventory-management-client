@@ -5,3 +5,4 @@ export { default as Colors } from "./colors/colors";
 export { default as Branches } from "./branches/branches";
 export { default as GenericLists } from "./generic-lists/generic-lists";
 export { default as GenericListItems } from "./generic-list-items/generic-list-items";
+export { default as PaymentMethods } from "./payment-method/payment-methods";
