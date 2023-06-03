@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { Currency } from "../../models";
 import { CurrencyService } from "../../services";
 import "./currencies.scss";
+import { useTranslation } from "react-i18next";
 
 export default (props: any) => {
   const [currencies, setCurrencies] = useState([]);
+  const { t } = useTranslation()
 
   useEffect(() => {
     CurrencyService.getAll().then((currencies: Currency[]) => {
@@ -18,7 +20,7 @@ export default (props: any) => {
     CurrencyService.insert(e.data);
   };
   const onCurrencyUpdated = (e) => {
-    CurrencyService.modify(e.data.id,e.data);
+    CurrencyService.modify(e.data.id, e.data);
   };
   const onCurrencyRemoved = (e) => {
     CurrencyService.remove(e.data.id);
@@ -26,7 +28,7 @@ export default (props: any) => {
 
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>currencies</h2>
+      <h2 className={"content-block"}>{t('navigation.currencies')}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid

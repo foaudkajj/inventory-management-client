@@ -3,11 +3,13 @@ import { Column, Editing, Lookup, RequiredRule } from "devextreme-react/data-gri
 import React, { useEffect, useState } from "react";
 import { BranchService, CityService, CountryService } from "../../services";
 import "./branches.scss";
+import { useTranslation } from "react-i18next";
 
 export default (props: any) => {
   const [branches, setBranches] = useState([]);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
+  const { t } = useTranslation()
 
   useEffect(() => {
     const branches$ = BranchService.getAll();
@@ -38,7 +40,7 @@ export default (props: any) => {
   }
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>branches</h2>
+      <h2 className={"content-block"}>{t('navigation.branches')}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid

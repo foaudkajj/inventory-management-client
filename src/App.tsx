@@ -16,9 +16,12 @@ import config from "devextreme/core/config";
 import "./i18n/i18n";
 import { loadMessages, locale } from "devextreme/localization";
 import arMessages from "devextreme/localization/messages/ar.json";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const { user, loading } = useAuth();
+  const { i18n } = useTranslation()
+  config({ rtlEnabled: i18n.resolvedLanguage === 'ar' });
 
   if (loading) {
     return <LoadPanel visible={true} />;

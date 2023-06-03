@@ -6,12 +6,14 @@ import { BranchService, UserService } from "../../services";
 import "./users.scss";
 import { RoleService } from "../../services/role.service";
 import { MerchantService } from "../../services/merchant.service";
+import { useTranslation } from "react-i18next";
 
 export default (props: any) => {
     const [users, setUsers] = useState([]);
     const [roles, setRoles] = useState([]);
     const [branches, setBranches] = useState([]);
     const [merchants, setMerchnts] = useState([]);
+    const { t } = useTranslation()
 
     useEffect(() => {
         const users$ = UserService.getAll()
@@ -19,7 +21,7 @@ export default (props: any) => {
         const branches$ = BranchService.getAll()
         const merchants$ = MerchantService.getAll()
 
-        let promises = [users$, roles$,branches$,merchants$];
+        let promises = [users$, roles$, branches$, merchants$];
         Promise.all(promises)
             .then((result) => {
                 setUsers(result[0]);
@@ -38,7 +40,7 @@ export default (props: any) => {
 
     const onUserRemoved = (e) => {
         UserService.remove(e.data.id);
-       
+
     };
     const status = Object.values(
         UserStatus,
@@ -49,12 +51,12 @@ export default (props: any) => {
 
         };
     });
-console.log(users);
+    console.log(users);
 
     return (
 
         <React.Fragment>
-            <h2 className={"content-block"}>Users</h2>
+            <h2 className={"content-block"}>{t('navigation.users')}</h2>
 
             <div className={"content-block dx-card responsive-paddings"}>
                 <DataGrid
@@ -77,9 +79,9 @@ console.log(users);
                         visible={false}
                         formItem={{ visible: false }}
                     ></Column>
-                    <Column dataField={"firstName"} ><RequiredRule/></Column>
-                    <Column dataField={"lastName"}><RequiredRule/></Column>
-                    <Column dataField={"username"}><RequiredRule/></Column>
+                    <Column dataField={"firstName"} ><RequiredRule /></Column>
+                    <Column dataField={"lastName"}><RequiredRule /></Column>
+                    <Column dataField={"username"}><RequiredRule /></Column>
                     <Column dataField={"password"}></Column>
                     <Column dataField={"pictureUrl"}></Column>
                     <Column dataField={"email"}></Column>

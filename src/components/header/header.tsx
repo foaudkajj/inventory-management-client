@@ -10,7 +10,7 @@ import './header.scss';
 interface IProps {
   menuToggleEnabled: boolean;
   title?: string;
-  toggleMenu: (e: any) => void; 
+  toggleMenu: (e: any) => void;
   userMenuItems?: any;
 }
 

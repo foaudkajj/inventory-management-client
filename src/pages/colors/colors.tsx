@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import { Color } from "../../models";
 import { ColorService } from "../../services";
 import "./colors.scss";
+import { useTranslation } from "react-i18next";
 
 export default (props: any) => {
   // setColors değişkeni değiştirmek için kullanılır.
   const [colors, setColors] = useState([]);
+  const { t } = useTranslation()
 
   // backend den veri çekeceksen bunu kullanmalısın.
   useEffect(() => {
@@ -20,16 +22,16 @@ export default (props: any) => {
   const onColorInserted = (e) => {
     ColorService.insert(e.data);
   };
-const onColorUpdated=(e) =>{
-ColorService.modify(e.data.id,e.data);
-}
+  const onColorUpdated = (e) => {
+    ColorService.modify(e.data.id, e.data);
+  }
 
-  const onColorRemoved =(e)=>{
-ColorService.remove(e.data.id);
+  const onColorRemoved = (e) => {
+    ColorService.remove(e.data.id);
   };
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>Colors</h2>
+      <h2 className={"content-block"}>{t('navigation.colors')}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid

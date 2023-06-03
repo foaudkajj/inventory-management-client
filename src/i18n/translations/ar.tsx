@@ -1,4 +1,7 @@
 export const ar = {
+  home: {
+    title: "نظام إدارة المخزون"
+  },
   login: {
     username: "اسم المستخدم",
     password: "كلمة المرور",
@@ -30,6 +33,10 @@ export const ar = {
   },
   navigation: {
     "home-page": "الصفحة الرئيسية",
+    "colors": "الألوان",
+    "currencies": " العملات",
+    "branches": "الأفرع",
+    "users": "المستخدمين"
   },
   ERROR: {
     USER_ALREADY_EXIST: "تم إضافة المستخدم سابقاً",
