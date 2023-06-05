@@ -25,11 +25,11 @@ export const navigation: NavigationItem[] = [
         path: "/users",
       },
       {
-        text: "GenericLists ",
+        text: "navigation.generic_lists",
         path: "/genericLists",
       },
       {
-        text: "PaymentMethods ",
+        text: "navigation.payment_method",
         path: "/paymentMethods",
       },
     ],

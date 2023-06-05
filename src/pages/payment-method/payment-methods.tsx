@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { PaymentMethod } from "../../models";
 import { PaymentMethodService } from "../../services";
 import "./payment-methods.scss";
+import { useTranslation } from "react-i18next";
 
 export default (props: any) => {
   const [paymentMethods, setPaymentMethods] = useState([]);
@@ -23,10 +24,10 @@ export default (props: any) => {
   const onPaymentMethodRemoved = (e) => {
     PaymentMethodService.remove(e.data.id);
   };
-
+  const { t } = useTranslation()
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>payment methods</h2>
+      <h2 className={"content-block"}>{t('navigation.payment_method')}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid
@@ -49,7 +50,7 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"}></Column>
+          <Column dataField={"name"} caption={t('column.name')}></Column>
         </DataGrid>
       </div>
     </React.Fragment>

@@ -51,7 +51,7 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"}></Column>
+          <Column dataField={"name"} caption={t('column.name')}></Column>
         </DataGrid>
       </div>
     </React.Fragment>

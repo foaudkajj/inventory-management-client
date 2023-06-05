@@ -17,11 +17,11 @@ export default function ({ menuMode }: IProps) {
 
   const menuItems = useMemo(() => ([
     {
-      text: 'Profile',
+      text: t('user-panel.profile'),
       icon: 'user'
     },
     {
-      text: 'Logout',
+      text: t('user-panel.logout'),
       icon: 'runner',
       onClick: () => {
         navigation('/login');
@@ -29,25 +29,25 @@ export default function ({ menuMode }: IProps) {
       }
     },
     {
-      text: 'languages',
+      text: t('user-panel.languages'),
       icon: 'fa-solid fa-language',
       items: [
         {
-          text: 'English',
+          text: t('languages.english'),
           onClick: () => {
             i18n.changeLanguage('en');
             window.location.reload()
           }
         },
         {
-          text: 'Turkish',
+          text: t('languages.turkish'),
           onClick: () => {
             i18n.changeLanguage('tr');
             window.location.reload()
           }
         },
         {
-          text: 'Arabic',
+          text: t('languages.arabic'),
           onClick: () => {
             i18n.changeLanguage('ar');
             window.location.reload()

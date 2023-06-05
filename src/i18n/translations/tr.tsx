@@ -34,11 +34,41 @@ export const tr = {
     navigation: {
         "home-page": "Ana Sayfa",
         "colors": "Renkler",
-        "currencies": " Para birimleri",
+        "currencies": "Para birimleri",
         "branches": "Şubeler",
-        "users": "Kullanicilar"
+        "users": "Kullanicilar",
+        "generic_lists": "Jenerik listeler",
+        "payment_method": "Ödeme yöntemleri"
     },
     ERROR: {
         USER_ALREADY_EXIST: "Kullanıcı adı daha önce kaydolmuştur.",
     },
+    "user-panel": {
+        "profile": "Profil",
+        "logout": "Çıkış yap",
+        "languages": "Diller"
+    },
+    languages: {
+        "english": "İngilizce",
+        "turkish": "Türkçe",
+        "arabic": "Arapça"
+    },
+    column: {
+        "name": "ad",
+        "country": "Ülke",
+        "city": "Şehir",
+        "first_name": "Adı",
+        "last_name": "Soy adı",
+        "user_name": "Kullanıcı adı",
+        "password": "Şifre",
+        "email": "E-posta",
+        "gsm": "telefon",
+        "role": "Rol",
+        "branch": "Şube",
+        "merchant": "tüccarlar",
+        "user_status": "Kullanıcı durumu",
+        "description": "Açıklama",
+        "code": "Kod"
+
+    }
 };

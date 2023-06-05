@@ -64,11 +64,11 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"} caption={'name'}>
+          <Column dataField={"name"} caption={t('column.name')}>
             <RequiredRule />
           </Column>
           <Column
-            dataField="countryId" caption={'country name'}>
+            dataField="countryId" caption={t('column.country')}>
             <Lookup
               dataSource={countries}
               valueExpr="id"
@@ -78,7 +78,7 @@ export default (props: any) => {
 
           </Column>
           <Column
-            dataField="cityId" caption={'city name'}>
+            dataField="cityId" caption={t('column.city')}>
             <Lookup
               dataSource={cities}
               valueExpr="id"

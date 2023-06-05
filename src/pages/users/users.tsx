@@ -79,15 +79,14 @@ export default (props: any) => {
                         visible={false}
                         formItem={{ visible: false }}
                     ></Column>
-                    <Column dataField={"firstName"} ><RequiredRule /></Column>
-                    <Column dataField={"lastName"}><RequiredRule /></Column>
-                    <Column dataField={"username"}><RequiredRule /></Column>
-                    <Column dataField={"password"}></Column>
-                    <Column dataField={"pictureUrl"}></Column>
-                    <Column dataField={"email"}></Column>
-                    <Column dataField={"gsm"}></Column>
+                    <Column dataField={"firstName"} caption={t('column.first_name')} ><RequiredRule /></Column>
+                    <Column dataField={"lastName"} caption={t('column.last_name')}><RequiredRule /></Column>
+                    <Column dataField={"username"} caption={t('column.user_name')}><RequiredRule /></Column>
+                    <Column dataField={"password"} caption={t('column.password')}></Column>
+                    <Column dataField={"email"} caption={t('column.email')}></Column>
+                    <Column dataField={"gsm"} caption={t('column.gsm')}></Column>
                     <Column
-                        dataField="roleId" caption={'role'}>
+                        dataField="roleId" caption={t('column.role')}>
                         <Lookup
                             dataSource={roles}
                             valueExpr="id"
@@ -95,7 +94,7 @@ export default (props: any) => {
                         />
                     </Column>
                     <Column
-                        dataField="branchId" caption={'branch'}>
+                        dataField="branchId" caption={t('column.branch')}>
                         <Lookup
                             dataSource={branches}
                             valueExpr="id"
@@ -103,7 +102,7 @@ export default (props: any) => {
                         />
                     </Column>
                     <Column
-                        dataField="merchantId" caption={'merchant'}>
+                        dataField="merchantId" caption={t('column.merchant')}>
                         <Lookup
                             dataSource={merchants}
                             valueExpr="id"
@@ -111,7 +110,7 @@ export default (props: any) => {
                         />
                     </Column>
                     <Column
-                        dataField="status" caption={'user status'}>
+                        dataField="status" caption={t('column.user_status')}>
                         <Lookup
                             dataSource={status}
                             valueExpr="id"
