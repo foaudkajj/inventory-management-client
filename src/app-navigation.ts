@@ -9,27 +9,27 @@ export const navigation: NavigationItem[] = [
     icon: "folder",
     items: [
       {
-        text: "Colors",
+        text: "navigation.colors",
         path: "/colors",
       },
       {
-        text: "Currencies",
+        text: "navigation.currencies",
         path: "/currencies",
       },
       {
-        text: "Branches",
+        text: "navigation.branches",
         path: "/branches",
       },
       {
-        text: "Users",
+        text: "navigation.users",
         path: "/users",
       },
       {
-        text: "GenericLists ",
+        text: "navigation.generic_lists",
         path: "/genericLists",
       },
       {
-        text: "PaymentMethods ",
+        text: "navigation.payment_method",
         path: "/paymentMethods",
       },
     ],

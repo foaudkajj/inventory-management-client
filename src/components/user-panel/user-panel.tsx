@@ -1,11 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useTransition } from 'react';
 import ContextMenu, { Position } from 'devextreme-react/context-menu';
 import List from 'devextreme-react/list';
 import { useNavigate } from 'react-router-dom';
-
 import { useAuth } from '../../contexts/auth';
-
 import './user-panel.scss';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   menuMode: 'context' | 'list'
@@ -14,19 +13,49 @@ interface IProps {
 export default function ({ menuMode }: IProps) {
   const { user, logOut } = useAuth();
   const navigation = useNavigate();
+  const { t, i18n } = useTranslation()
+
   const menuItems = useMemo(() => ([
     {
-      text: 'Profile',
+      text: t('user-panel.profile'),
       icon: 'user'
     },
     {
-      text: 'Logout',
+      text: t('user-panel.logout'),
       icon: 'runner',
       onClick: () => {
         navigation('/login');
         logOut()
       }
-    }
+    },
+    {
+      text: t('user-panel.languages'),
+      icon: 'fa-solid fa-language',
+      items: [
+        {
+          text: t('languages.english'),
+          onClick: () => {
+            i18n.changeLanguage('en');
+            window.location.reload()
+          }
+        },
+        {
+          text: t('languages.turkish'),
+          onClick: () => {
+            i18n.changeLanguage('tr');
+            window.location.reload()
+          }
+        },
+        {
+          text: t('languages.arabic'),
+          onClick: () => {
+            i18n.changeLanguage('ar');
+            window.location.reload()
+          }
+        }
+      ],
+
+    },
   ]), [logOut, navigation]);
 
   return (

@@ -12,6 +12,7 @@ import { useMenuPatch } from "../../utils/patches";
 
 import "./side-nav-inner-toolbar.scss";
 import { ClickEvent } from "devextreme/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   title: string;
@@ -52,13 +53,14 @@ export default function ({ title, children }: IProps) {
     );
     return false;
   }, [isLarge]);
-
+  const { t } = useTranslation()
   const onNavigationChanged = useCallback(
     ({ itemData: { path }, event, node }) => {
       if (menuStatus === MenuStatus.Closed || !path || node.selected) {
         event.preventDefault();
         return;
       }
+
 
       navigate(path);
       scrollViewRef.current?.instance.scrollTo(0);
@@ -116,7 +118,7 @@ export default function ({ title, children }: IProps) {
               <Item
                 location={"before"}
                 cssClass={"header-title"}
-                text={title}
+                text={t('home.title')}
               />
             </Toolbar>
           </SideNavigationMenu>
