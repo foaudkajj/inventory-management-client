@@ -27,7 +27,7 @@ export default function () {
       setLoading(true);
       if (logIn) {
         try {
-          await logIn(username, password);
+          await logIn({ username: username, password: password });
         } catch (e) {
           ToastService.showToast("error", t("messages.not-valid-credentials"));
           setLoading(false);
