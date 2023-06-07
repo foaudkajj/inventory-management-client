@@ -1,9 +1,11 @@
 import { UserStatus } from "../enums";
 
 export class LoginResponse {
-  token: string;
-  username: string;
-  status: UserStatus;
-  name: string;
-  surname: string;
+  access_token: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    username: string;
+    status: UserStatus;
+  };
 }

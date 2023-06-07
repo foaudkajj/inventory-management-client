@@ -5,13 +5,13 @@ import React, {
   useContext,
   useCallback,
 } from "react";
-import { LoginResponse, UserStatus } from "../models";
+import { LoginRequest, LoginResponse, UserStatus } from "../models";
 import { AuthService } from "../services";
 
 type AuthContextType = {
   user: LoginResponse | null;
   loading: boolean;
-  logIn?: (email: string, password: string) => Promise<void>;
+  logIn?: (loginRequest: LoginRequest) => Promise<void>;
   logOut?: any;
 };
 const AuthContext = createContext<AuthContextType>({
@@ -24,23 +24,22 @@ function AuthProvider(props: any) {
   const [user, setUser] = useState<LoginResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const logIn = useCallback(async (username, password) => {
-    // Send login request
+  const logIn = useCallback(async (loginRequest) => {
 
+    // Send login request
+    const data = await AuthService.login(loginRequest)
     const loginResponse: LoginResponse = {
-      name: "M Fuat",
-      surname: "NUROGLU",
-      status: UserStatus.Active,
-      token: "safsd",
-      username: "mfuat",
+      access_token: data.access_token,
+      user: {
+        firstName: data.user.firstName,
+        lastName: data.user.lastName,
+        username: data.user.username,
+        status: data.user.status
+      }
     };
-    //  await AuthService.login({
-    //   username: username,
-    //   password: password,
-    // });
     if (loginResponse) {
-      sessionStorage.setItem("user", JSON.stringify(loginResponse));
-      sessionStorage.setItem("token", loginResponse.token);
+      localStorage.setItem("user", JSON.stringify(loginResponse));
+      localStorage.setItem("token", loginResponse.access_token);
       setUser(loginResponse);
     }
   }, []);
@@ -48,14 +47,14 @@ function AuthProvider(props: any) {
   const logOut = useCallback(() => {
     // Clear user data
 
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setUser(null);
   }, []);
 
   useEffect(() => {
     // Retrieve and save user data on initial load
-    const user = JSON.parse(sessionStorage.getItem("user") ?? "false");
+    const user = JSON.parse(localStorage.getItem("user") ?? "false");
     if (user) {
       setUser(user as LoginResponse);
     } else {
