@@ -38,7 +38,9 @@ export const tr = {
         "branches": "Şubeler",
         "users": "Kullanicilar",
         "generic_lists": "Jenerik listeler",
-        "payment_method": "Ödeme yöntemleri"
+        "payment_method": "Ödeme yöntemleri",
+        "selling_page": "Satış sayfası"
+
     },
     ERROR: {
         USER_ALREADY_EXIST: "Kullanıcı adı daha önce kaydolmuştur.",

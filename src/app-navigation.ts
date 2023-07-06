@@ -32,6 +32,10 @@ export const navigation: NavigationItem[] = [
         text: "navigation.payment_method",
         path: "/paymentMethods",
       },
+      {
+        text: "navigation.selling_page",
+        path: "/sellingPage",
+      },
     ],
   },
 

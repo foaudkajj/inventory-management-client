@@ -38,7 +38,8 @@ export const ar = {
     "branches": "الأفرع",
     "users": "المستخدمين",
     "generic_lists": "قوائم عامة",
-    "payment_method": "طرق الدفع"
+    "payment_method": "طرق الدفع",
+    "selling_page": "المبيعات"
   },
   ERROR: {
     USER_ALREADY_EXIST: "تم إضافة المستخدم سابقاً",
