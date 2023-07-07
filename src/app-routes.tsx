@@ -1,6 +1,5 @@
 import { withNavigationWatcher } from "./contexts/navigation";
-import { ProfilePage, HomePage, Currencies, Colors, Branches, GenericLists, GenericListItems, PaymentMethods } from "./pages";
-import Users from "./pages/users/users";
+import { ProfilePage, HomePage, Currencies, Colors, Branches, GenericLists, GenericListItems, PaymentMethods, Users, SellingPage } from "./pages";
 
 
 const routes = [
@@ -39,6 +38,10 @@ const routes = [
   {
     path: "/paymentMethods",
     component: <PaymentMethods />,
+  },
+  {
+    path: "/sellingPage",
+    component: <SellingPage />,
   },
 ];
 

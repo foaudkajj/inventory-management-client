@@ -38,7 +38,8 @@ export const en = {
         "branches": "Branches",
         "users": "Users",
         "generic_lists": "Generik lists",
-        "payment_method": "Payment methods"
+        "payment_method": "Payment methods",
+        "selling_page": "Selling page"
     },
     ERROR: {
         USER_ALREADY_EXIST: "User Already Exist",
