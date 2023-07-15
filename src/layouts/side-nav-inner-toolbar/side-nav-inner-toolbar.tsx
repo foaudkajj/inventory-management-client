@@ -81,7 +81,7 @@ export default function ({ title, children }: IProps) {
         closeOnOutsideClick={onOutsideClick}
         openedStateMode={isLarge ? "shrink" : "overlap"}
         revealMode={isXSmall ? "slide" : "expand"}
-        minSize={isXSmall ? 0 : 60}
+        minSize={0} //always hide the menu totally when it is closed
         maxSize={250}
         shading={isLarge ? false : true}
         opened={menuStatus === MenuStatus.Closed ? false : true}
