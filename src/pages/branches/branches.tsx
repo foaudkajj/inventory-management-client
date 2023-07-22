@@ -34,10 +34,7 @@ export default (props: any) => {
   const onBranchRemoved = (e) => {
     BranchService.remove(e.data.id);
   };
-  //TODO
-  const setMerchantIdDefault = (e) => {
-    e.data.merchantId = '3fa85f64-5717-4562-b3fc-2c963f66afa6';
-  }
+
   return (
     <React.Fragment>
       <h2 className={"content-block"}>{t('navigation.branches')}</h2>
@@ -50,7 +47,6 @@ export default (props: any) => {
           onRowInserted={onBranchInserted}
           onRowUpdated={onBranchUpdated}
           onRowRemoved={onBranchRemoved}
-          onInitNewRow={setMerchantIdDefault}
         >
           <Editing
             mode="form"
