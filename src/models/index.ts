@@ -17,3 +17,4 @@ export * from "./merchant.model";
 export * from "./payment-method.model";
 export * from "./product-category.model";
 export * from "./product.model";
+export * from "./unit.model";

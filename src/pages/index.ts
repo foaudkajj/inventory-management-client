@@ -8,3 +8,4 @@ export { default as GenericListItems } from "./generic-list-items/generic-list-i
 export { default as PaymentMethods } from "./payment-method/payment-methods";
 export { default as Users } from "./users/users";
 export { default as SellingPage } from "./selling-page/selling-page";
+export { default as Products } from "./products/products"

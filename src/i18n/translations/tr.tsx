@@ -39,7 +39,8 @@ export const tr = {
         "users": "Kullanicilar",
         "generic_lists": "Jenerik listeler",
         "payment_method": "Ödeme yöntemleri",
-        "selling_page": "Satış sayfası"
+        "selling_page": "Satış sayfası",
+        "products": "Ürünler"
 
     },
     ERROR: {
@@ -70,7 +71,16 @@ export const tr = {
         "merchant": "tüccarlar",
         "user_status": "Kullanıcı durumu",
         "description": "Açıklama",
-        "code": "Kod"
-
+        "code": "Kod",
+        "barcode": "Barkod",
+        "shortcode": "kısa kod",
+        "gender": "Cinsiyet",
+        "price": "Fiyat",
+        "size": "Boyut",
+        "quantity": "miktar",
+        "sellingPrice": "Satış fiyatı",
+        "pictureUrl": "Fotoğraf Url'i",
+        "unit": "Birim",
+        "category": "Kategori"
     }
 };
