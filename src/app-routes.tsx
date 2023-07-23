@@ -1,5 +1,5 @@
 import { withNavigationWatcher } from "./contexts/navigation";
-import { ProfilePage, HomePage, Currencies, Colors, Branches, GenericLists, GenericListItems, PaymentMethods, Users, SellingPage, Products } from "./pages";
+import { ProfilePage, HomePage, Currencies, Colors, Branches, GenericLists, GenericListItems, PaymentMethods, Users, SellingPage, Products, ProductCategories } from "./pages";
 
 
 const routes = [
@@ -46,6 +46,10 @@ const routes = [
   {
     path: "/products",
     component: <Products />
+  },
+  {
+    path: "/productCategories",
+    component: <ProductCategories />
   }
 ];
 

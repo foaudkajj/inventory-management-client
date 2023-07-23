@@ -6,7 +6,7 @@ import { SideNavInnerToolbar as SideNavBarLayout } from "./layouts";
 import { Footer } from "./components";
 import Profile from "./pages/profile/profile";
 import Home from "./pages/home/home";
-import { Currencies, GenericLists, Colors, GenericListItems, Branches, PaymentMethods, SellingPage, Users, Products } from "./pages";
+import { Currencies, GenericLists, Colors, GenericListItems, Branches, PaymentMethods, SellingPage, Users, Products, ProductCategories } from "./pages";
 
 
 export default function () {
@@ -25,6 +25,7 @@ export default function () {
         <Route path="/paymentMethods" element={<PaymentMethods currentPath={"/paymentMethods"} />} />
         <Route path="/sellingPage" element={<SellingPage currentPath={"/sellingPage"} />} />
         <Route path="/products" element={<Products currentPath={"/products"} />} />
+        <Route path="/productCategories" element={<ProductCategories currentPath={"/productCategories"} />} />
 
       </Routes>
       <Footer>
