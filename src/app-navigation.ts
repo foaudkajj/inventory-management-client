@@ -36,6 +36,10 @@ export const navigation: NavigationItem[] = [
         text: "navigation.selling_page",
         path: "/sellingPage",
       },
+      {
+        text: "navigation.products",
+        path: "/products"
+      }
     ],
   },
 

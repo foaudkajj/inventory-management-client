@@ -39,7 +39,9 @@ export const ar = {
     "users": "المستخدمين",
     "generic_lists": "قوائم عامة",
     "payment_method": "طرق الدفع",
-    "selling_page": "المبيعات"
+    "selling_page": "المبيعات",
+    "products": "المنتجات"
+
   },
   ERROR: {
     USER_ALREADY_EXIST: "تم إضافة المستخدم سابقاً",
@@ -69,7 +71,16 @@ export const ar = {
     "merchant": "التاجر",
     "user_status": "حالة المستخدم",
     "description": "الوصف",
-    "code": "الكود"
-
+    "code": "الكود",
+    "barcode": "باركود",
+    "shortcode": "اختصار الكود",
+    "gender": "الجنس",
+    "price": "السعر",
+    "size": "المقاس",
+    "quantity": "كمية",
+    "sellingPrice": "سعر المبيع",
+    "pictureUrl": "رابط الصورة",
+    "unit": "الوحدة",
+    "category": "الفئة",
   }
 };

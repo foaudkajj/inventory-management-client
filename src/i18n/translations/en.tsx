@@ -39,7 +39,8 @@ export const en = {
         "users": "Users",
         "generic_lists": "Generik lists",
         "payment_method": "Payment methods",
-        "selling_page": "Selling page"
+        "selling_page": "Selling page",
+        "products": "Products"
     },
     ERROR: {
         USER_ALREADY_EXIST: "User Already Exist",
@@ -69,6 +70,16 @@ export const en = {
         "merchant": "Merchant",
         "user_status": "User status",
         "description": "Description",
-        "code": "Code"
+        "code": "Code",
+        "barcode": "barcode",
+        "shortcode": "short code",
+        "gender": "gender",
+        "price": "price",
+        "size": "size",
+        "quantity": "quantity",
+        "sellingPrice": "selling Price",
+        "pictureUrl": "picture Url",
+        "unit": "unit",
+        "category": "category"
     }
 };
