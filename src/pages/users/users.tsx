@@ -5,29 +5,25 @@ import { UserStatus } from "../../models";
 import { BranchService, UserService } from "../../services";
 import "./users.scss";
 import { RoleService } from "../../services/role.service";
-import { MerchantService } from "../../services/merchant.service";
 import { useTranslation } from "react-i18next";
 
 export default (props: any) => {
     const [users, setUsers] = useState([]);
     const [roles, setRoles] = useState([]);
     const [branches, setBranches] = useState([]);
-    const [merchants, setMerchnts] = useState([]);
     const { t } = useTranslation()
 
     useEffect(() => {
         const users$ = UserService.getAll()
         const roles$ = RoleService.getAll()
         const branches$ = BranchService.getAll()
-        const merchants$ = MerchantService.getAll()
 
-        let promises = [users$, roles$, branches$, merchants$];
+        let promises = [users$, roles$, branches$];
         Promise.all(promises)
             .then((result) => {
                 setUsers(result[0]);
                 setRoles(result[1]);
                 setBranches(result[2]);
-                setMerchnts(result[3]);
             })
     }, []);
 
@@ -99,14 +95,6 @@ export default (props: any) => {
                             dataSource={branches}
                             valueExpr="id"
                             displayExpr="name"
-                        />
-                    </Column>
-                    <Column
-                        dataField="merchantId" caption={t('column.merchant')}>
-                        <Lookup
-                            dataSource={merchants}
-                            valueExpr="id"
-                            displayExpr="title"
                         />
                     </Column>
                     <Column
