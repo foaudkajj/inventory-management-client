@@ -6,7 +6,7 @@ import { ProductCategoryService } from "../../services/product-category.service"
 import "./products.scss";
 import { t } from "i18next";
 import { DataGrid } from "devextreme-react";
-import { Column, Editing, Lookup, RequiredRule } from "devextreme-react/data-grid";
+import { Column, Editing, FormItem, Format, Lookup, RequiredRule } from "devextreme-react/data-grid";
 import { Gender } from "../../models";
 
 
@@ -49,6 +49,7 @@ export default (props: any) => {
             name: v.toLowerCase(),
         };
     });
+
     return (
         <react.Fragment>
             <h2 className={"content-block"}>{t('navigation.products')}</h2>
@@ -84,11 +85,10 @@ export default (props: any) => {
                             displayExpr="name"
                         />
                     </Column>
-                    <Column dataField={"price"} caption={t('column.price')} dataType="number"><RequiredRule /></Column>
+                    <Column dataField={"price"} caption={t('column.price')} ><RequiredRule /><Format type="currency" precision={2} /></Column>
                     <Column dataField={"size"} caption={t('column.size')} dataType="number"></Column>
                     <Column dataField={"quantity"} caption={t('column.quantity')} dataType="number"><RequiredRule /></Column>
-                    <Column dataField={"sellingPrice"} caption={t('column.sellingPrice')} dataType="number"><RequiredRule /></Column>
-                    <Column dataField={"description"} caption={t('column.description')}></Column>
+                    <Column dataField={"sellingPrice"} caption={t('column.sellingPrice')} dataType="number" ><RequiredRule /><Format type="currency" precision={2} /></Column>
                     <Column dataField={"pictureUrl"} caption={t('column.pictureUrl')}></Column>
                     <Column dataField={"unitId"} caption={t('column.unit')}><RequiredRule />
                         <Lookup
@@ -110,6 +110,9 @@ export default (props: any) => {
                             valueExpr="id"
                             displayExpr="name"
                         />
+                    </Column>
+                    <Column dataField={"description"} caption={t('column.description')}>
+                        <FormItem colSpan={2} editorType="dxTextArea" />
                     </Column>
                 </DataGrid>
             </div>
