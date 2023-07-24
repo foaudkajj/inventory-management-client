@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 function App() {
   const { user, loading } = useAuth();
   const { i18n } = useTranslation()
-  config({ rtlEnabled: i18n.resolvedLanguage === 'ar' });
+  config({ rtlEnabled: i18n.resolvedLanguage === 'ar', defaultCurrency: 'TRY' });
 
   if (loading) {
     return <LoadPanel visible={true} />;
