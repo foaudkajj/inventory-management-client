@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { GenericListItemService, GenericListService } from "../../services";
 import "./generic-list-items.scss";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
   const [genericListItems, setGenericListItems] = useState([]);
@@ -12,8 +13,13 @@ export default (props: any) => {
   const navigate = useNavigate();
   const listId = location.state?.id;
   const genericListName = genericLists.find((element) => element.id == listId);
+  const { setNavigationData } = useNavigation();
+  const { currentPath } = props;
 
   useEffect(() => {
+    if (setNavigationData) {
+      setNavigationData({ currentPath: currentPath });
+    }
     if (listId == null) {
       navigate("/genericLists");
     }

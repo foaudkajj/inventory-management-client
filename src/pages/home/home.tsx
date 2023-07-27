@@ -16,7 +16,6 @@ export default (props: any) => {
       setNavigationData({ currentPath: currentPath });
     }
   }, [currentPath, setNavigationData, useTranslation]);
-  console.log(t('home.title'));
 
   return (
     <React.Fragment>

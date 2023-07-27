@@ -5,11 +5,17 @@ import { PaymentMethod } from "../../models";
 import { PaymentMethodService } from "../../services";
 import "./payment-methods.scss";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
   const [paymentMethods, setPaymentMethods] = useState([]);
+  const { setNavigationData } = useNavigation();
+  const { currentPath } = props;
 
   useEffect(() => {
+    if (setNavigationData) {
+      setNavigationData({ currentPath: currentPath });
+    }
     PaymentMethodService.getAll().then((paymentMethods: PaymentMethod[]) => {
       setPaymentMethods(paymentMethods);
     });

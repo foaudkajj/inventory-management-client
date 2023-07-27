@@ -3,6 +3,8 @@ import './selling-page.scss';
 import { ProductCategoryService } from '../../services/product-category.service';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models';
+import { useNavigation } from "../../contexts/navigation";
+import { useNavigate } from 'react-router-dom';
 
 class SelectedProduct {
     count: number;
@@ -13,6 +15,9 @@ export default (props: any) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [productsInBasket, setProductsInBasket] = useState<SelectedProduct[]>([]);
+    const { setNavigationData } = useNavigation();
+    const { currentPath } = props;
+    const navigate = useNavigate();
 
     const filterProducts = ((id: string) => {
         setFilteredProducts((products.filter((value) => value.categoryId == id)));
@@ -32,9 +37,13 @@ export default (props: any) => {
         }
 
     })
-
+    const goToHome = () => {
+        navigate("/home")
+    }
     useEffect(() => {
-
+        if (setNavigationData) {
+            setNavigationData({ currentPath: currentPath });
+        }
         const Categories$ = ProductCategoryService.getAll();
         const Products$ = ProductService.getAll();
         Promise.all([Categories$, Products$]).then((results) => {
@@ -43,8 +52,8 @@ export default (props: any) => {
             setProducts(products);
             setFilteredProducts(products)
         });
+    }, [currentPath, setNavigationData]);
 
-    }, []);
 
     return (
         <React.Fragment>
@@ -55,7 +64,7 @@ export default (props: any) => {
                         <div className='buttons'>
                             <button className='btn1'>aramak</button>
                             <button className='btn2'><i className="fa fa-save"></i> Kaydet</button>
-                            <button className="btn3"><i className="fa fa-close"></i> Çıkış</button>
+                            <button className="btn3" onClick={goToHome}><i className="fa fa-close"></i> Çıkış</button>
                         </div>
                         <div className='inputflex'>
                             <input className='input1' ></input>

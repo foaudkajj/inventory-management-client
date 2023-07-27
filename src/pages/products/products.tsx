@@ -8,6 +8,7 @@ import { t } from "i18next";
 import { DataGrid } from "devextreme-react";
 import { Column, Editing, FormItem, Format, Lookup, RequiredRule } from "devextreme-react/data-grid";
 import { Gender } from "../../models";
+import { useNavigation } from "../../contexts/navigation";
 
 
 export default (props: any) => {
@@ -15,8 +16,13 @@ export default (props: any) => {
     const [units, setUnits] = useState([]);
     const [categories, setCategories] = useState([]);
     const [colors, setColors] = useState([]);
+    const { setNavigationData } = useNavigation();
+    const { currentPath } = props;
 
     useEffect(() => {
+        if (setNavigationData) {
+            setNavigationData({ currentPath: currentPath });
+        }
         const products$ = ProductService.getAll()
         const units$ = UnitService.getAll()
         const categories$ = ProductCategoryService.getAll()
