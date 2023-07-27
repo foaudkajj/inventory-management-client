@@ -2,7 +2,7 @@ import Button from "devextreme-react/button";
 import Drawer from "devextreme-react/drawer";
 import ScrollView from "devextreme-react/scroll-view";
 import Toolbar, { Item } from "devextreme-react/toolbar";
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Template } from "devextreme-react/core/template";
 
@@ -13,6 +13,8 @@ import { useMenuPatch } from "../../utils/patches";
 import "./side-nav-inner-toolbar.scss";
 import { ClickEvent } from "devextreme/ui/button";
 import { useTranslation } from "react-i18next";
+import { useSideNav } from "../../contexts/side-nav";
+import { useNavigation } from "../../contexts/navigation";
 
 interface IProps {
   title: string;
@@ -27,6 +29,9 @@ export default function ({ title, children }: IProps) {
   const [menuStatus, setMenuStatus] = useState(
     isLarge ? MenuStatus.Opened : MenuStatus.Closed
   );
+  const { opend } = useSideNav()
+  const { navigationData } = useNavigation();
+  const { trigger } = useSideNav();
 
   const toggleMenu = (e: ClickEvent) => {
     setMenuStatus((prevMenuStatus) =>
@@ -60,8 +65,6 @@ export default function ({ title, children }: IProps) {
         event.preventDefault();
         return;
       }
-
-
       navigate(path);
       scrollViewRef.current?.instance.scrollTo(0);
 
@@ -72,7 +75,16 @@ export default function ({ title, children }: IProps) {
     },
     [navigate, menuStatus, isLarge]
   );
+  useEffect(() => {
+    if (navigationData.currentPath == "/sellingPage") {
+      trigger(false)
+    } else { trigger(true) }
+    if (opend) {
+      setMenuStatus(MenuStatus.Opened)
 
+    }
+    else setMenuStatus(MenuStatus.Closed)
+  })
   return (
     <div className={"side-nav-inner-toolbar"}>
       <Drawer

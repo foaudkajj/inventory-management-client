@@ -6,11 +6,17 @@ import { GenericListService } from "../../services";
 import "./generic-lists.scss";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
   const [genericLists, setGenericLists] = useState([]);
+  const { setNavigationData } = useNavigation();
+  const { currentPath } = props;
 
   useEffect(() => {
+    if (setNavigationData) {
+      setNavigationData({ currentPath: currentPath });
+    }
     GenericListService.getAll().then((genericLists: GenericList[]) => {
       setGenericLists(genericLists);
     });

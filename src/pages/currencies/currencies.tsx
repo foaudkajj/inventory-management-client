@@ -5,12 +5,18 @@ import { Currency } from "../../models";
 import { CurrencyService } from "../../services";
 import "./currencies.scss";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
   const [currencies, setCurrencies] = useState([]);
   const { t } = useTranslation()
+  const { setNavigationData } = useNavigation();
+  const { currentPath } = props;
 
   useEffect(() => {
+    if (setNavigationData) {
+      setNavigationData({ currentPath: currentPath });
+    }
     CurrencyService.getAll().then((currencies: Currency[]) => {
       setCurrencies(currencies);
     });

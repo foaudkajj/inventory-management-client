@@ -6,14 +6,20 @@ import { BranchService, UserService } from "../../services";
 import "./users.scss";
 import { RoleService } from "../../services/role.service";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
     const [users, setUsers] = useState([]);
     const [roles, setRoles] = useState([]);
     const [branches, setBranches] = useState([]);
     const { t } = useTranslation()
+    const { setNavigationData } = useNavigation();
+    const { currentPath } = props;
 
     useEffect(() => {
+        if (setNavigationData) {
+            setNavigationData({ currentPath: currentPath });
+        }
         const users$ = UserService.getAll()
         const roles$ = RoleService.getAll()
         const branches$ = BranchService.getAll()
@@ -47,7 +53,6 @@ export default (props: any) => {
 
         };
     });
-    console.log(users);
 
     return (
 

@@ -4,14 +4,21 @@ import React, { useEffect, useState } from "react";
 import { BranchService, CityService, CountryService } from "../../services";
 import "./branches.scss";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "../../contexts/navigation";
+
 
 export default (props: any) => {
   const [branches, setBranches] = useState([]);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const { t } = useTranslation()
+  const { setNavigationData } = useNavigation();
+  const { currentPath } = props;
 
   useEffect(() => {
+    if (setNavigationData) {
+      setNavigationData({ currentPath: currentPath });
+    }
     const branches$ = BranchService.getAll();
     const countries$ = CountryService.getAll();
     const cities$ = CityService.getAll();
@@ -25,7 +32,6 @@ export default (props: any) => {
   }, [])
 
   const onBranchInserted = (e) => {
-    console.log(e);
     BranchService.insert(e.data);
   };
   const onBranchUpdated = (e) => {
