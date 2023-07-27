@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react"
 
 type NavSideContextType = {
     opend: boolean;
-    trigger?: (isOpend: boolean) => {}
+    trigger?: (isOpend: boolean) => void;
 };
 
 const SideNavContext = createContext<NavSideContextType>({
