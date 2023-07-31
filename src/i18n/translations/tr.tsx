@@ -81,6 +81,8 @@ export const tr = {
         "sellingPrice": "Satış fiyatı",
         "pictureUrl": "Fotoğraf Url'i",
         "unit": "Birim",
-        "category": "Kategori"
+        "category": "Kategori",
+        "choose_payment_method": "Ödeme yöntemini seç",
+        "amount": "Miktar"
     }
 };
