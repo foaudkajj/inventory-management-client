@@ -57,7 +57,6 @@ export default (props: any) => {
         const grid = dataGridRef.current?.instance;
         var dataItems = grid?.getDataSource()._items
         setTempState(dataItems)
-        console.log(dataItems);
     }, [dataGridRef])
 
     const closeButtonOptions = {
