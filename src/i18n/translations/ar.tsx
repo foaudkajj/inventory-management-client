@@ -82,5 +82,7 @@ export const ar = {
     "pictureUrl": "رابط الصورة",
     "unit": "الوحدة",
     "category": "الفئة",
+    "choose_payment_method": "اختر طريقة الدفع",
+    "amount": "الكمية"
   }
 };

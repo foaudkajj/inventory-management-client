@@ -80,6 +80,8 @@ export const en = {
         "sellingPrice": "selling Price",
         "pictureUrl": "picture Url",
         "unit": "unit",
-        "category": "category"
+        "category": "category",
+        "choose_payment_method": "Choose your payment method",
+        "amount": "Amount"
     }
 };
