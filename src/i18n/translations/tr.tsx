@@ -82,7 +82,18 @@ export const tr = {
         "pictureUrl": "Fotoğraf Url'i",
         "unit": "Birim",
         "category": "Kategori",
+    },
+    sellingPage: {
         "choose_payment_method": "Ödeme yöntemini seç",
-        "amount": "Miktar"
+        "amount": "Miktar",
+        "preferences": "Tercihler",
+        "clean": "Temizle",
+        "get_last_sale": "Son satışı getir",
+        "reports": "Raporlar",
+        "transactions": "İşlemler",
+        "exit": "Çıkıl",
+        "save": "Kaydet",
+        "search": "Ara",
+        "customer": "Müşteri"
     }
 };
