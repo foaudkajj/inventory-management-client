@@ -123,7 +123,7 @@ export default (props: any) => {
         hideOnOutsideClick={false}
         showCloseButton={false}
         showTitle={true}
-        title={t("column.choose_payment_method")}
+        title={t("sellingPage.choose_payment_method")}
         container=".dx-viewport"
         width={800}
         height={700}
@@ -161,7 +161,7 @@ export default (props: any) => {
           </Column>
           <Column
             dataField="Amount"
-            caption={t("column.amount")}
+            caption={t("sellingPage.amount")}
             dataType="number"
             format="currency"
           ></Column>
@@ -171,18 +171,18 @@ export default (props: any) => {
         <div className="row1">
           <div className="column1">
             <div className="buttons">
-              <button className="btn1" onClick={SerchOnClick} disabled={isBtnDisabled}>Ara</button>
+              <button className="btn1" onClick={SerchOnClick} disabled={isBtnDisabled}>{t('sellingPage.search')}</button>
               <button className="btn2">
-                <i className="fa fa-save"></i> Kaydet
+                <i className="fa fa-save"></i> {t('sellingPage.save')}
               </button>
               <button className="btn3" onClick={goToHome}>
-                <i className="fa fa-close"></i> Çıkış
+                <i className="fa fa-close"></i> {t('sellingPage.exit')}
               </button>
             </div>
             <div className="inputflex">
               <input className="input1" onChange={handleInputChange} value={textBoxValue}></input>
               <button className="btn2">
-                <i className="fa-solid fa-store"></i>Ürünler
+                <i className="fa-solid fa-store"></i>{t('column.category')}
               </button>
             </div>
             <div className="orders">
@@ -197,7 +197,7 @@ export default (props: any) => {
                     <br />
                     <text className="btn3">{product?.product.barcode}</text>
                     <text className="orderP">
-                      {product.count} Adet *{" "}
+                      {product.count} {t('sellingPage.amount')} *{" "}
                       <b>{product.product.sellingPrice} ₺</b>{" "}
                     </text>
                     <hr />
@@ -239,22 +239,22 @@ export default (props: any) => {
             <div className="btxt">32,41 ₺</div>
           </div>
           <button className="btn5" onClick={() => tercihler()}>
-            <i className="fa-solid fa-money-bill"></i> terciher
+            <i className="fa-solid fa-money-bill"></i> {t('sellingPage.preferences')}
           </button>
           <button className="btn3" onClick={() => setProductsInBasket([])}>
-            <i className="fa-solid fa-trash"></i> temizle
+            <i className="fa-solid fa-trash"></i> {t('sellingPage.clean')}
           </button>
           <button className="btn1">
-            <i className="fa-solid fa-arrow-left"></i> son satışı getir
+            <i className="fa-solid fa-arrow-left"></i> {t('sellingPage.get_last_sale')}
           </button>
           <button className="btn1">
-            <i className="fa-regular fa-user"></i> Müşteri Baket
+            <i className="fa-regular fa-user"></i> {t('sellingPage.customer')}
           </button>
           <button className="btn1">
-            <i className="fa-solid fa-book"></i> Raporlar
+            <i className="fa-solid fa-book"></i> {t('sellingPage.reports')}
           </button>
           <button className="btn2">
-            <i className="fa-solid fa-bars"></i> işlemler
+            <i className="fa-solid fa-bars"></i> {t('sellingPage.transactions')}
           </button>
         </div>
       </div>
