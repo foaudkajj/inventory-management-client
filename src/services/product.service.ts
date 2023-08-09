@@ -20,10 +20,15 @@ const remove = (key: string): Promise<Product> => {
   let result$ = AxiosService.remove<Product>(`Products/delete/${key}`);
   return result$;
 };
+const getByBarcode = (barcode: string): Promise<Product | undefined> => {
+  let result$ = AxiosService.get<Product>(`Products/getByBarcode/${barcode}`);
+  return result$
+}
 
 export const ProductService = {
   getAll,
   insert,
   modify,
   remove,
+  getByBarcode
 };
