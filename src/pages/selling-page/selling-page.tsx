@@ -6,7 +6,7 @@ import { Product } from "../../models";
 import { useNavigation } from "../../contexts/navigation";
 import { useNavigate } from "react-router-dom";
 import { Popup, Position, ToolbarItem } from "devextreme-react/popup";
-import { PaymentMethodService } from "../../services";
+import { PaymentMethodService, ToastService } from "../../services";
 import DataGrid, { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import { t } from "i18next";
 
@@ -69,12 +69,31 @@ export default (props: any) => {
       setPopupVisible(false);
     },
   };
+  const [textBoxValue, setTextBoxValue] = useState('');
 
+  const handleInputChange = (event) => {
+    if (event.target.value.length > 0) {
+      setisBtnDisabled(false)
+    }
+    else setisBtnDisabled(true)
+    setTextBoxValue(event.target.value);
+
+  };
+
+  const SerchOnClick = async () => {
+    const sechedProduct = await ProductService.getByBarcode(textBoxValue)
+    const result = (await sechedProduct).id
+
+    if (sechedProduct) {
+      addToBasket(result)
+    }
+    else ToastService.showToast("warning", "selling-page.warnings.product-not-found")
+  }
+  const [isBtnDisabled, setisBtnDisabled] = useState(true);
   useEffect(() => {
     if (setNavigationData) {
       setNavigationData({ currentPath: currentPath });
     }
-
     const Categories$ = ProductCategoryService.getAll();
     const Products$ = ProductService.getAll();
     const PaymentMethods$ = PaymentMethodService.getAll();
@@ -152,7 +171,7 @@ export default (props: any) => {
         <div className="row1">
           <div className="column1">
             <div className="buttons">
-              <button className="btn1">Ara</button>
+              <button className="btn1" onClick={SerchOnClick} disabled={isBtnDisabled}>Ara</button>
               <button className="btn2">
                 <i className="fa fa-save"></i> Kaydet
               </button>
@@ -161,7 +180,7 @@ export default (props: any) => {
               </button>
             </div>
             <div className="inputflex">
-              <input className="input1"></input>
+              <input className="input1" onChange={handleInputChange} value={textBoxValue}></input>
               <button className="btn2">
                 <i className="fa-solid fa-store"></i>Ürünler
               </button>
