@@ -82,7 +82,18 @@ export const ar = {
     "pictureUrl": "رابط الصورة",
     "unit": "الوحدة",
     "category": "الفئة",
+  },
+  sellingPage: {
     "choose_payment_method": "اختر طريقة الدفع",
-    "amount": "الكمية"
+    "amount": "الكمية",
+    "preferences": "التفضيلات",
+    "clean": "امسح",
+    "get_last_sale": "احضر اخر المبيعات",
+    "reports": "التقارير",
+    "transactions": "العمليات",
+    "exit": "خروج",
+    "save": "حفظ",
+    "search": "بحث",
+    "customer": "المشتري"
   }
 };

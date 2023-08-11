@@ -81,7 +81,18 @@ export const en = {
         "pictureUrl": "picture Url",
         "unit": "unit",
         "category": "category",
+    },
+    sellingPage: {
         "choose_payment_method": "Choose your payment method",
-        "amount": "Amount"
+        "amount": "Amount",
+        "preferences": "Preferences",
+        "clean": "Clean",
+        "get_last_sale": "Get the last sale",
+        "reports": "Reports",
+        "transactions": "Transactions",
+        "exit": "Exit",
+        "save": "Save",
+        "search": "Search",
+        "customer": "Customer"
     }
 };
