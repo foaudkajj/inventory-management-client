@@ -1,6 +1,6 @@
 {
   "name": "inventory-management-client",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "homepage": "http://mfuatnuroglu.com.tr",
   "private": true,
   "dependencies": {

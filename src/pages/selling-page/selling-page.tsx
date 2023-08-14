@@ -73,23 +73,23 @@ export default (props: any) => {
 
   const handleInputChange = (event) => {
     if (event.target.value.length > 0) {
-      setisSearchBtnDisabled(false)
+      setIsSearchBtnDisabled(false)
     }
-    else setisSearchBtnDisabled(true)
+    else setIsSearchBtnDisabled(true)
     setTextBoxValue(event.target.value);
 
   };
 
   const SerchOnClick = async () => {
-    const sechedProduct = await ProductService.getByBarcode(textBoxValue)
-    const result = (await sechedProduct).id
+    const searchedProduct = await ProductService.getByBarcode(textBoxValue)
+    const result = (await searchedProduct).id
 
-    if (sechedProduct) {
+    if (searchedProduct) {
       addToBasket(result)
     }
     else ToastService.showToast("warning", "selling-page.warnings.product-not-found")
   }
-  const [isSearchBtnDisabled, setisSearchBtnDisabled] = useState(true);
+  const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
   const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
   const finishSaleBtn = () => {
     const saleRequest: SaleRequest = new SaleRequest()
