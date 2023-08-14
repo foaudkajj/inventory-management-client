@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import "./selling-page.scss";
 import { ProductCategoryService } from "../../services/product-category.service";
 import { ProductService } from "../../services/product.service";
-import { Product } from "../../models";
+import { PaymentMethodRequest, Product, SaleProductRequest, SaleRequest } from "../../models";
 import { useNavigation } from "../../contexts/navigation";
 import { useNavigate } from "react-router-dom";
 import { Popup, Position, ToolbarItem } from "devextreme-react/popup";
-import { PaymentMethodService, ToastService } from "../../services";
+import { PaymentMethodService, SellingService, ToastService } from "../../services";
 import DataGrid, { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import { t } from "i18next";
-
 class SelectedProduct {
   count: number;
   product: Product;
@@ -47,6 +46,7 @@ export default (props: any) => {
       ];
       setProductsInBasket(allProductsInBasket);
     }
+    setIsFinishBtnDisabled(false)
   };
 
   const goToHome = () => {
@@ -73,23 +73,50 @@ export default (props: any) => {
 
   const handleInputChange = (event) => {
     if (event.target.value.length > 0) {
-      setisBtnDisabled(false)
+      setIsSearchBtnDisabled(false)
     }
-    else setisBtnDisabled(true)
+    else setIsSearchBtnDisabled(true)
     setTextBoxValue(event.target.value);
 
   };
 
   const SerchOnClick = async () => {
-    const sechedProduct = await ProductService.getByBarcode(textBoxValue)
-    const result = (await sechedProduct).id
+    const searchedProduct = await ProductService.getByBarcode(textBoxValue)
+    const result = (await searchedProduct).id
 
-    if (sechedProduct) {
+    if (searchedProduct) {
       addToBasket(result)
     }
     else ToastService.showToast("warning", "selling-page.warnings.product-not-found")
   }
-  const [isBtnDisabled, setisBtnDisabled] = useState(true);
+  const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
+  const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
+  const finishSaleBtn = () => {
+    const saleRequest: SaleRequest = new SaleRequest()
+    let saleProductRequest = new SaleProductRequest();
+    let selectedPorduct = []
+    productsInBasket.forEach(product => {
+      saleProductRequest = {
+        productId: product.product.id,
+        productCount: product.count,
+        sellingPrice: product.product.sellingPrice
+      }
+      selectedPorduct.push(saleProductRequest)
+    })
+    let paymentMethodRequest = new PaymentMethodRequest()
+    let selectedPayment = []
+    paymentMethods.map(paymentMethod => {
+      paymentMethodRequest = {
+        paymentMethodId: paymentMethod.id,
+        amount: paymentMethod.Amount
+      }
+      selectedPayment.push(paymentMethodRequest)
+    })
+    saleRequest.products = selectedPorduct
+    saleRequest.paymentMethods = selectedPayment;
+
+    SellingService.sellProducts(saleRequest)
+  }
   useEffect(() => {
     if (setNavigationData) {
       setNavigationData({ currentPath: currentPath });
@@ -97,7 +124,6 @@ export default (props: any) => {
     const Categories$ = ProductCategoryService.getAll();
     const Products$ = ProductService.getAll();
     const PaymentMethods$ = PaymentMethodService.getAll();
-
     Promise.all([Categories$, Products$, PaymentMethods$]).then((results) => {
       setCategories(results[0]);
       const products = results[1] ?? [];
@@ -171,9 +197,9 @@ export default (props: any) => {
         <div className="row1">
           <div className="column1">
             <div className="buttons">
-              <button className="btn1" onClick={SerchOnClick} disabled={isBtnDisabled}>{t('sellingPage.search')}</button>
-              <button className="btn2">
-                <i className="fa fa-save"></i> {t('sellingPage.save')}
+              <button className="btn1" onClick={SerchOnClick} disabled={isSearchBtnDisabled}>Ara</button>
+              <button className="btn2" onClick={finishSaleBtn} disabled={isFinishBtnDisabled}>
+                <i className="fa fa-save"></i> selling-page.buttons.finish-sale
               </button>
               <button className="btn3" onClick={goToHome}>
                 <i className="fa fa-close"></i> {t('sellingPage.exit')}
@@ -241,8 +267,8 @@ export default (props: any) => {
           <button className="btn5" onClick={() => tercihler()}>
             <i className="fa-solid fa-money-bill"></i> {t('sellingPage.preferences')}
           </button>
-          <button className="btn3" onClick={() => setProductsInBasket([])}>
-            <i className="fa-solid fa-trash"></i> {t('sellingPage.clean')}
+          <button className="btn3" onClick={() => { setProductsInBasket([]); setIsFinishBtnDisabled(true) }}>
+            <i className="fa-solid fa-trash"></i> temizle
           </button>
           <button className="btn1">
             <i className="fa-solid fa-arrow-left"></i> {t('sellingPage.get_last_sale')}
