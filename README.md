@@ -10,6 +10,7 @@ Welcome to the Inventory Management Client Repository! This project is a React w
 - [Usage](#usage)
 - [Localization](#localization)
 - [Selling Page](#selling-page)
+- [Context](#context)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -50,6 +51,9 @@ Implement multi-language support using the i18n library. Easily switch between l
 
 ## Selling Page
 Discover the dedicated selling page, which efficiently displays products and their respective categories. Use the provided filters to streamline product exploration.
+
+## Context
+The application utilizes React context to manage global state. This allows for efficient data sharing between components and facilitates a more organized and maintainable codebase.
 
 ## Contributing
 Contributions are encouraged! To enhance the application's functionality or address issues, follow these steps:
