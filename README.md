@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Inventory Management Client
 
-## Available Scripts
+Welcome to the Inventory Management Client Repository! This project is a React web application designed for efficient inventory management. It allows you to interact with a backend API to manage various aspects of your inventory. The application leverages DevExtreme DataGrids and popups for data interaction, integrates i18n for translation support, and features a dedicated selling page to display and filter products by categories.
 
-In the project directory, you can run:
+## Table of Contents
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Usage](#usage)
+- [Localization](#localization)
+- [Selling Page](#selling-page)
+- [Context](#context)
+- [Contributing](#contributing)
+- [License](#license)
 
-### `npm start`
+## Introduction
+The Inventory Management Client is a React-based application that offers a comprehensive user interface to interact with a backend API. It aims to simplify inventory management tasks by providing CRUD operations, visualization through DevExtreme components, multi-language support via i18n, and a specialized selling page to facilitate efficient product categorization.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies Used
+- **React**: A powerful JavaScript library for building user interfaces.
+- **DevExtreme**: High-performance UI components tailored for data-centric applications.
+- **i18n**: A library for managing translations and internationalization in the application.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Getting Started
+To begin using the Inventory Management Client, follow these steps:
 
-### `npm test`
+1. Clone this repository: `git clone https://github.com/foaudkajj/inventory-management-client.git`
+2. Navigate to the project directory: `cd inventory-management-client`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm start`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+- **Create**: Add new inventory items through intuitive popups and the DevExtreme DataGrid.
+- **Read**: View existing inventory items presented in an organized DataGrid format.
+- **Update**: Edit and update details of inventory items directly within the DataGrid.
+- **Delete**: Remove unnecessary inventory items using the DataGrid.
+- **Localization**: Provide multi-language support with the i18n library.
 
-### `npm run build`
+## Usage
+1. **Create**: Access the "Add" button on the appropriate page to display a popup. Fill in required details and click "Save" to create a new inventory item.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Read**: Explore various application pages to visualize existing inventory items using the DevExtreme DataGrid.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+3. **Update**: Click on an inventory item in the DataGrid to open a popup for editing. Apply changes and click "Save" to update the entry.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Delete**: In the DataGrid, select one or multiple items and click "Delete" to remove them.
 
-### `npm run eject`
+## Localization
+Implement multi-language support using the i18n library. Easily switch between languages to access application content in your preferred language.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Selling Page
+Discover the dedicated selling page, which efficiently displays products and their respective categories. Use the provided filters to streamline product exploration.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Context
+The application utilizes React context to manage global state. This allows for efficient data sharing between components and facilitates a more organized and maintainable codebase.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contributing
+Contributions are encouraged! To enhance the application's functionality or address issues, follow these steps:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/new-feature`
+3. Implement and test your changes.
+4. Commit your modifications: `git commit -m "Add new feature"`
+5. Push your branch: `git push origin feature/new-feature`
+6. Create a Pull Request, outlining your changes.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Happy coding!
