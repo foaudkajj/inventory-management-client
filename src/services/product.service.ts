@@ -22,13 +22,13 @@ const remove = (key: string): Promise<Product> => {
 };
 const getByBarcode = (barcode: string): Promise<Product | undefined> => {
   let result$ = AxiosService.get<Product>(`Products/getByBarcode/${barcode}`);
-  return result$
-}
+  return result$;
+};
 
 export const ProductService = {
   getAll,
   insert,
   modify,
   remove,
-  getByBarcode
+  getByBarcode,
 };

@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import { tr } from "./translations/tr";
 import { ar } from "./translations/ar";
 import { en } from "./translations/en";
-import LanguageDetector from 'i18next-browser-languagedetector'
+import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -17,13 +17,13 @@ i18n
     fallbackLng: "tr",
     resources: {
       en: {
-        translation: en
+        translation: en,
       },
       tr: {
-        translation: tr
+        translation: tr,
       },
       ar: {
-        translation: ar
+        translation: ar,
       },
     },
 

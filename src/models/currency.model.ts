@@ -1,4 +1,4 @@
-export class Currency{
-    id:string;
-    name:string;
+export class Currency {
+  id: string;
+  name: string;
 }

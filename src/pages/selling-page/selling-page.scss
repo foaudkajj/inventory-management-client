@@ -1,184 +1,177 @@
 .big-row {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .row1 {
-    display: flex;
-    width: 100%;
-    height: 510px;
+  display: flex;
+  width: 100%;
+  height: 510px;
 }
 
 .row2 {
-    display: flex;
-    height: 80px;
-    width: 100%;
+  display: flex;
+  height: 80px;
+  width: 100%;
 }
 
 .column1 {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 100%;
 }
 
 .buttons {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.buttons>button {
-    height: 40px;
-    color: white;
-    margin: 2px;
+.buttons > button {
+  height: 40px;
+  color: white;
+  margin: 2px;
 }
 
 .column2 {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 200px;
 }
 
-.column2>button {
-    height: 56px;
-    width: 100px;
-    background-color: gold;
+.column2 > button {
+  height: 56px;
+  width: 100px;
+  background-color: gold;
 }
 
 .column3 {
-    display: flex;
-    width: 53%;
-    flex-wrap: wrap;
-    flex-flow: row wrap;
+  display: flex;
+  width: 53%;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 
-.column3>div>img {
-    width: 132px;
-    height: 92px;
-    margin: 1px;
+.column3 > div > img {
+  width: 132px;
+  height: 92px;
+  margin: 1px;
 }
 
-.column3>div {
-    margin-bottom: 1px;
+.column3 > div {
+  margin-bottom: 1px;
 }
 
 .btn1 {
-    background-color: black;
-    color: #f1f1f1
+  background-color: black;
+  color: #f1f1f1;
 }
 
 .btn2 {
-    background-color: DodgerBlue;
-    color: #f1f1f1;
+  background-color: DodgerBlue;
+  color: #f1f1f1;
 }
 
 .btn3 {
-    background-color: red;
-    color: #f1f1f1;
+  background-color: red;
+  color: #f1f1f1;
 }
 
 .btn4 {
-    background-color: DodgerBlue;
-    color: white;
-    height: 40px;
+  background-color: DodgerBlue;
+  color: white;
+  height: 40px;
 }
 
 .btn5 {
-    background-color: green;
-    color: #f1f1f1;
+  background-color: green;
+  color: #f1f1f1;
 }
 
 .input1 {
-    width: 325px;
-    height: 30px;
+  width: 325px;
+  height: 30px;
 }
 
 .inputflex {
-    display: flex;
-
+  display: flex;
 }
 
 button {
-    &:hover {
+  &:hover {
+    color: #ff7a59;
+    border: #ff7a59 solid 1px;
+    background: #fff;
+  }
 
-
-        color: #ff7a59;
-        border: #ff7a59 solid 1px;
-        background: #fff;
-
-
-    }
-
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.column3>div>text {
-    position: absolute;
-    bottom: 0;
-    background: rgb(0, 0, 0);
-    /* Fallback color */
-    background: rgba(0, 0, 0, 0.5);
-    /* Black background with 0.5 opacity */
-    color: #f1f1f1;
-    width: 100%;
-    padding: 5px;
-    height: 26%;
-    padding-left: 46px;
-
+.column3 > div > text {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  /* Fallback color */
+  background: rgba(0, 0, 0, 0.5);
+  /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 5px;
+  height: 26%;
+  padding-left: 46px;
 }
 
 .containerr {
-    position: relative;
-    width: 132px;
-    height: 92px;
-    margin: 2px;
+  position: relative;
+  width: 132px;
+  height: 92px;
+  margin: 2px;
 }
 
 .price {
-    background-color: black;
-    width: 32%;
-    height: 100%;
+  background-color: black;
+  width: 32%;
+  height: 100%;
 }
 
 .stxt {
-    top: 0;
-    left: 0;
-    font-size: small;
-    color: #f1f1f1;
+  top: 0;
+  left: 0;
+  font-size: small;
+  color: #f1f1f1;
 }
 
 .btxt {
-    padding-top: 5%;
-    padding-left: 69%;
-    font-size: xx-large;
-    color: #f1f1f1;
+  padding-top: 5%;
+  padding-left: 69%;
+  font-size: xx-large;
+  color: #f1f1f1;
 }
 
-.row2>button {
-    width: 11.3%;
-    margin-left: 2px;
+.row2 > button {
+  width: 11.3%;
+  margin-left: 2px;
 }
 
 .orders {
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
-.orders>div {
-    margin-top: -7px;
+.orders > div {
+  margin-top: -7px;
 }
 
 .orderP {
-    padding-left: 66%;
+  padding-left: 66%;
 }
 
 hr {
-    margin: 0;
+  margin: 0;
 }
 
 .ordertxt1 {
-    font-size: 10px;
+  font-size: 10px;
 }

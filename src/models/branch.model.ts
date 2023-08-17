@@ -1,6 +1,6 @@
-export class Branch{
-    id:string;
-    name:string;
-    cityId: string;
-    countryId: string;
+export class Branch {
+  id: string;
+  name: string;
+  cityId: string;
+  countryId: string;
 }

@@ -6,7 +6,6 @@ const getAll = (): Promise<Merchant[]> => {
   return result$;
 };
 
-
 export const MerchantService = {
-  getAll
+  getAll,
 };

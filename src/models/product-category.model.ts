@@ -1,4 +1,4 @@
 export class ProductCategory {
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 }

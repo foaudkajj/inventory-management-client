@@ -1,5 +1,5 @@
-export class City{
-    id:string;
-    name:string;
-    countryId: string;
+export class City {
+  id: string;
+  name: string;
+  countryId: string;
 }

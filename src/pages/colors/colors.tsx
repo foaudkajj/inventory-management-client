@@ -10,7 +10,7 @@ import { useNavigation } from "../../contexts/navigation";
 export default (props: any) => {
   // setColors değişkeni değiştirmek için kullanılır.
   const [colors, setColors] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
 
@@ -23,21 +23,21 @@ export default (props: any) => {
       // ekranı uyarır veri geldi diye.
       setColors(colors);
     });
-  }, []);
+  }, [currentPath, setNavigationData]);
 
   const onColorInserted = (e) => {
     ColorService.insert(e.data);
   };
   const onColorUpdated = (e) => {
     ColorService.modify(e.data.id, e.data);
-  }
+  };
 
   const onColorRemoved = (e) => {
     ColorService.remove(e.data.id);
   };
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>{t('navigation.colors')}</h2>
+      <h2 className={"content-block"}>{t("navigation.colors")}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid
@@ -60,8 +60,8 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"} caption={t('column.name')}></Column>
-          <Column dataField={"code"} caption={t('column.code')}></Column>
+          <Column dataField={"name"} caption={t("column.name")}></Column>
+          <Column dataField={"code"} caption={t("column.code")}></Column>
         </DataGrid>
       </div>
     </React.Fragment>

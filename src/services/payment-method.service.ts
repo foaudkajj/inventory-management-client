@@ -12,12 +12,17 @@ const insert = (row: PaymentMethod): Promise<PaymentMethod> => {
 };
 
 const modify = (key: string, row: PaymentMethod): Promise<PaymentMethod> => {
-  let result$ = AxiosService.put<PaymentMethod>(`paymentMethods/update/${key}`, row);
+  let result$ = AxiosService.put<PaymentMethod>(
+    `paymentMethods/update/${key}`,
+    row,
+  );
   return result$;
 };
 
 const remove = (key: string): Promise<PaymentMethod> => {
-  let result$ = AxiosService.remove<PaymentMethod>(`paymentMethods/delete/${key}`);
+  let result$ = AxiosService.remove<PaymentMethod>(
+    `paymentMethods/delete/${key}`,
+  );
   return result$;
 };
 

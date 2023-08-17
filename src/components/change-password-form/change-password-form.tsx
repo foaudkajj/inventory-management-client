@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useRef, useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Form, {
   Item,
   Label,
@@ -7,66 +7,69 @@ import Form, {
   ButtonOptions,
   RequiredRule,
   CustomRule,
-} from 'devextreme-react/form';
-import LoadIndicator from 'devextreme-react/load-indicator';
+} from "devextreme-react/form";
+import LoadIndicator from "devextreme-react/load-indicator";
 
 export default function () {
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
-  const formData = useRef({password: ''});
+  const formData = useRef({ password: "" });
   const { recoveryCode } = useParams<any>() as any;
 
-  const onSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    const { password } = formData.current;
-    setLoading(true);
+  const onSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const { password } = formData.current;
+      setLoading(true);
 
-    // Send reset password request
-    console.log(password, recoveryCode);
+      // Send reset password request
+      console.log(password, recoveryCode);
 
-    navigation('/login');
-  }, [navigation, recoveryCode]);
+      navigation("/login");
+    },
+    [navigation, recoveryCode],
+  );
 
   const confirmPassword = useCallback(
     ({ value }) => value === formData.current.password,
-    []
+    [],
   );
 
   return (
     <form onSubmit={onSubmit}>
       <Form formData={formData.current} disabled={loading}>
         <Item
-          dataField={'password'}
-          editorType={'dxTextBox'}
+          dataField={"password"}
+          editorType={"dxTextBox"}
           editorOptions={passwordEditorOptions}
         >
           <RequiredRule message="Password is required" />
           <Label visible={false} />
         </Item>
         <Item
-          dataField={'confirmedPassword'}
-          editorType={'dxTextBox'}
+          dataField={"confirmedPassword"}
+          editorType={"dxTextBox"}
           editorOptions={confirmedPasswordEditorOptions}
         >
           <RequiredRule message="Password is required" />
           <CustomRule
-            message={'Passwords do not match'}
+            message={"Passwords do not match"}
             validationCallback={confirmPassword}
           />
           <Label visible={false} />
         </Item>
         <ButtonItem>
           <ButtonOptions
-            width={'100%'}
-            type={'default'}
+            width={"100%"}
+            type={"default"}
             useSubmitBehavior={true}
           >
             <span className="dx-button-text">
-              {
-                loading
-                  ? <LoadIndicator width={'24px'} height={'24px'} visible={true} />
-                  : 'Continue'
-              }
+              {loading ? (
+                <LoadIndicator width={"24px"} height={"24px"} visible={true} />
+              ) : (
+                "Continue"
+              )}
             </span>
           </ButtonOptions>
         </ButtonItem>
@@ -75,5 +78,13 @@ export default function () {
   );
 }
 
-const passwordEditorOptions = { stylingMode: 'filled', placeholder: 'Password', mode: 'password' };
-const confirmedPasswordEditorOptions = { stylingMode: 'filled', placeholder: 'Confirm Password', mode: 'password' };
+const passwordEditorOptions = {
+  stylingMode: "filled",
+  placeholder: "Password",
+  mode: "password",
+};
+const confirmedPasswordEditorOptions = {
+  stylingMode: "filled",
+  placeholder: "Confirm Password",
+  mode: "password",
+};

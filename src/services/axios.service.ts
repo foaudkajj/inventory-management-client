@@ -19,7 +19,7 @@ client.interceptors.response.use(
     } else {
       throw error;
     }
-  }
+  },
 );
 
 async function get<T>(url: string, params?: object) {
@@ -28,7 +28,7 @@ async function get<T>(url: string, params?: object) {
       method: "GET",
       url,
       responseType: "json",
-      params: params
+      params: params,
     });
     return result.data;
   } catch (e) {

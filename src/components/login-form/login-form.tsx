@@ -34,7 +34,7 @@ export default function () {
         }
       }
     },
-    [logIn]
+    [logIn, t],
   );
 
   // const onCreateAccountClick = useCallback(() => {

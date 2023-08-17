@@ -29,6 +29,6 @@ export class DxStoreOptions {
       url?: string;
       username?: string;
       xhrFields?: {};
-    }
+    },
   ) => void;
 }

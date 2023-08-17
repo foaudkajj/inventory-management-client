@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, createContext, useContext, useEffect } from "react";
 
 interface INavigationData {
   currentPath: string;
@@ -8,7 +8,9 @@ type NavigationContextType = {
   setNavigationData?: (data: INavigationData) => Promise<void>;
   navigationData: INavigationData;
 };
-const NavigationContext = createContext<NavigationContextType>({ navigationData: { currentPath: '' } });
+const NavigationContext = createContext<NavigationContextType>({
+  navigationData: { currentPath: "" },
+});
 const useNavigation = () => useContext(NavigationContext);
 
 function NavigationProvider(props: any) {
@@ -28,15 +30,13 @@ function withNavigationWatcher(Component: any) {
     const { setNavigationData } = useNavigation();
 
     useEffect(() => {
-      if (setNavigationData) { setNavigationData({ currentPath: path }); }
+      if (setNavigationData) {
+        setNavigationData({ currentPath: path });
+      }
     }, [path, setNavigationData]);
 
     return React.createElement(Component, props);
-  }
+  };
 }
 
-export {
-  NavigationProvider,
-  useNavigation,
-  withNavigationWatcher
-}
+export { NavigationProvider, useNavigation, withNavigationWatcher };

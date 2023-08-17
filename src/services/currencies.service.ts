@@ -1,4 +1,4 @@
-import {  Currency } from "../models";
+import { Currency } from "../models";
 import { AxiosService } from "./axios.service";
 
 const getAll = (): Promise<Currency[]> => {

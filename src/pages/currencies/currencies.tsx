@@ -9,7 +9,7 @@ import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
   const [currencies, setCurrencies] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
 
@@ -20,7 +20,7 @@ export default (props: any) => {
     CurrencyService.getAll().then((currencies: Currency[]) => {
       setCurrencies(currencies);
     });
-  }, []);
+  }, [currentPath, setNavigationData]);
 
   const onCurrencyInserted = (e) => {
     CurrencyService.insert(e.data);
@@ -34,7 +34,7 @@ export default (props: any) => {
 
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>{t('navigation.currencies')}</h2>
+      <h2 className={"content-block"}>{t("navigation.currencies")}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid
@@ -57,7 +57,7 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"} caption={t('column.name')}></Column>
+          <Column dataField={"name"} caption={t("column.name")}></Column>
         </DataGrid>
       </div>
     </React.Fragment>

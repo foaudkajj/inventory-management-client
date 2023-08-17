@@ -27,9 +27,9 @@ export default function ({ title, children }: IProps) {
   const { isXSmall, isLarge } = useScreenSize();
   const [patchCssClass, onMenuReady] = useMenuPatch();
   const [menuStatus, setMenuStatus] = useState(
-    isLarge ? MenuStatus.Opened : MenuStatus.Closed
+    isLarge ? MenuStatus.Opened : MenuStatus.Closed,
   );
-  const { opend } = useSideNav()
+  const { opend } = useSideNav();
   const { navigationData } = useNavigation();
   const { trigger } = useSideNav();
 
@@ -37,7 +37,7 @@ export default function ({ title, children }: IProps) {
     setMenuStatus((prevMenuStatus) =>
       prevMenuStatus === MenuStatus.Closed
         ? MenuStatus.Opened
-        : MenuStatus.Closed
+        : MenuStatus.Closed,
     );
     e.event?.stopPropagation();
   };
@@ -46,7 +46,7 @@ export default function ({ title, children }: IProps) {
     setMenuStatus((prevMenuStatus) =>
       prevMenuStatus === MenuStatus.Closed
         ? MenuStatus.TemporaryOpened
-        : prevMenuStatus
+        : prevMenuStatus,
     );
   }, []);
 
@@ -54,11 +54,11 @@ export default function ({ title, children }: IProps) {
     setMenuStatus((prevMenuStatus) =>
       prevMenuStatus !== MenuStatus.Closed && !isLarge
         ? MenuStatus.Closed
-        : prevMenuStatus
+        : prevMenuStatus,
     );
     return false;
   }, [isLarge]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const onNavigationChanged = useCallback(
     ({ itemData: { path }, event, node }) => {
       if (menuStatus === MenuStatus.Closed || !path || node.selected) {
@@ -73,18 +73,18 @@ export default function ({ title, children }: IProps) {
         event.stopPropagation();
       }
     },
-    [navigate, menuStatus, isLarge]
+    [navigate, menuStatus, isLarge],
   );
   useEffect(() => {
-    if (navigationData.currentPath == "/sellingPage") {
-      trigger(false)
-    } else { trigger(true) }
-    if (opend) {
-      setMenuStatus(MenuStatus.Opened)
-
+    if (navigationData.currentPath === "/sellingPage") {
+      trigger(false);
+    } else {
+      trigger(true);
     }
-    else setMenuStatus(MenuStatus.Closed)
-  })
+    if (opend) {
+      setMenuStatus(MenuStatus.Opened);
+    } else setMenuStatus(MenuStatus.Closed);
+  }, [navigationData.currentPath, opend, trigger]);
   return (
     <div className={"side-nav-inner-toolbar"}>
       <Drawer
@@ -130,7 +130,7 @@ export default function ({ title, children }: IProps) {
               <Item
                 location={"before"}
                 cssClass={"header-title"}
-                text={t('home.title')}
+                text={t("home.title")}
               />
             </Toolbar>
           </SideNavigationMenu>
