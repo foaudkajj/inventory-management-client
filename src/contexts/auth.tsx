@@ -5,7 +5,7 @@ import React, {
   useContext,
   useCallback,
 } from "react";
-import { LoginRequest, LoginResponse, UserStatus } from "../models";
+import { LoginRequest, LoginResponse } from "../models";
 import { AuthService } from "../services";
 
 type AuthContextType = {
@@ -25,17 +25,16 @@ function AuthProvider(props: any) {
   const [loading, setLoading] = useState(true);
 
   const logIn = useCallback(async (loginRequest) => {
-
     // Send login request
-    const data = await AuthService.login(loginRequest)
+    const data = await AuthService.login(loginRequest);
     const loginResponse: LoginResponse = {
       access_token: data.access_token,
       user: {
         firstName: data.user.firstName,
         lastName: data.user.lastName,
         username: data.user.username,
-        status: data.user.status
-      }
+        status: data.user.status,
+      },
     };
     if (loginResponse) {
       localStorage.setItem("user", JSON.stringify(loginResponse));

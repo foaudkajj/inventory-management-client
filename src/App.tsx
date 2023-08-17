@@ -23,7 +23,10 @@ function App() {
   const { user, loading } = useAuth();
   const { i18n } = useTranslation();
 
-  config({ rtlEnabled: i18n.resolvedLanguage === 'ar', defaultCurrency: 'TRY' });
+  config({
+    rtlEnabled: i18n.resolvedLanguage === "ar",
+    defaultCurrency: "TRY",
+  });
 
   if (loading) {
     return <LoadPanel visible={true} />;

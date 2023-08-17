@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form, {
   Item,
@@ -6,38 +6,42 @@ import Form, {
   ButtonItem,
   ButtonOptions,
   RequiredRule,
-  EmailRule
-} from 'devextreme-react/form';
-import LoadIndicator from 'devextreme-react/load-indicator';
-import notify from 'devextreme/ui/notify';
+  EmailRule,
+} from "devextreme-react/form";
+import LoadIndicator from "devextreme-react/load-indicator";
+import notify from "devextreme/ui/notify";
 
-import './reset-password-form.scss'
+import "./reset-password-form.scss";
 
-const notificationText = 'We\'ve sent a link to reset your password. Check your inbox.';
+const notificationText =
+  "We've sent a link to reset your password. Check your inbox.";
 
 export default function () {
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
-  const formData = useRef({email: ''});
+  const formData = useRef({ email: "" });
 
-  const onSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    const { email } = formData.current;
-    setLoading(true);
+  const onSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      const { email } = formData.current;
+      setLoading(true);
 
-    // Send reset password request
-    console.log(email);
+      // Send reset password request
+      console.log(email);
 
-    navigation('/login');
-    notify(notificationText, 'success', 2500);
-  }, [navigation]);
+      navigation("/login");
+      notify(notificationText, "success", 2500);
+    },
+    [navigation],
+  );
 
   return (
-    <form className={'reset-password-form'} onSubmit={onSubmit}>
+    <form className={"reset-password-form"} onSubmit={onSubmit}>
       <Form formData={formData.current} disabled={loading}>
         <Item
-          dataField={'email'}
-          editorType={'dxTextBox'}
+          dataField={"email"}
+          editorType={"dxTextBox"}
           editorOptions={emailEditorOptions}
         >
           <RequiredRule message="Email is required" />
@@ -47,22 +51,22 @@ export default function () {
         <ButtonItem>
           <ButtonOptions
             elementAttr={submitButtonAttributes}
-            width={'100%'}
-            type={'default'}
+            width={"100%"}
+            type={"default"}
             useSubmitBehavior={true}
           >
             <span className="dx-button-text">
-              {
-                loading
-                  ? <LoadIndicator width={'24px'} height={'24px'} visible={true} />
-                  : 'Reset my password'
-              }
+              {loading ? (
+                <LoadIndicator width={"24px"} height={"24px"} visible={true} />
+              ) : (
+                "Reset my password"
+              )}
             </span>
           </ButtonOptions>
         </ButtonItem>
         <Item>
-          <div className={'login-link'}>
-            Return to <Link to={'/login'}>Sign In</Link>
+          <div className={"login-link"}>
+            Return to <Link to={"/login"}>Sign In</Link>
           </div>
         </Item>
       </Form>
@@ -70,5 +74,9 @@ export default function () {
   );
 }
 
-const emailEditorOptions = { stylingMode: 'filled', placeholder: 'Email', mode: 'email' };
-const submitButtonAttributes = { class: 'submit-button' };
+const emailEditorOptions = {
+  stylingMode: "filled",
+  placeholder: "Email",
+  mode: "email",
+};
+const submitButtonAttributes = { class: "submit-button" };

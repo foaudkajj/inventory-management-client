@@ -6,7 +6,6 @@ const getAll = (): Promise<Unit[]> => {
   return result$;
 };
 
-
 export const UnitService = {
-  getAll
+  getAll,
 };

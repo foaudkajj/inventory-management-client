@@ -20,7 +20,7 @@ export default (props: any) => {
     GenericListService.getAll().then((genericLists: GenericList[]) => {
       setGenericLists(genericLists);
     });
-  }, []);
+  }, [currentPath, setNavigationData]);
 
   const onGenericListInserted = (e) => {
     GenericListService.insert(e.data);
@@ -37,10 +37,10 @@ export default (props: any) => {
   const onRowDblClicked = (e) => {
     navigate("/genericListItems", { state: { id: e.data.id } });
   };
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>{t('navigation.generic_lists')}</h2>
+      <h2 className={"content-block"}>{t("navigation.generic_lists")}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid
@@ -64,8 +64,11 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"} caption={t('column.name')}></Column>
-          <Column dataField={"description"} caption={t('column.description')}></Column>
+          <Column dataField={"name"} caption={t("column.name")}></Column>
+          <Column
+            dataField={"description"}
+            caption={t("column.description")}
+          ></Column>
         </DataGrid>
       </div>
     </React.Fragment>

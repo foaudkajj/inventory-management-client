@@ -7,17 +7,28 @@ const getAll = (): Promise<ProductCategory[]> => {
 };
 
 const insert = (row: ProductCategory): Promise<ProductCategory> => {
-  let result$ = AxiosService.post<ProductCategory>(`productsCategories/insert`, row);
+  let result$ = AxiosService.post<ProductCategory>(
+    `productsCategories/insert`,
+    row,
+  );
   return result$;
 };
 
-const modify = (key: string, row: ProductCategory): Promise<ProductCategory> => {
-  let result$ = AxiosService.put<ProductCategory>(`productsCategories/update/${key}`, row);
+const modify = (
+  key: string,
+  row: ProductCategory,
+): Promise<ProductCategory> => {
+  let result$ = AxiosService.put<ProductCategory>(
+    `productsCategories/update/${key}`,
+    row,
+  );
   return result$;
 };
 
 const remove = (key: string): Promise<ProductCategory> => {
-  let result$ = AxiosService.remove<ProductCategory>(`productsCategories/delete/${key}`);
+  let result$ = AxiosService.remove<ProductCategory>(
+    `productsCategories/delete/${key}`,
+  );
   return result$;
 };
 

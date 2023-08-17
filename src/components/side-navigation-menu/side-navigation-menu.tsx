@@ -19,14 +19,15 @@ export default function (props: any) {
     () =>
       navigation.map((item) => {
         item.text = t(item.text);
-        item.items = item?.items?.map((it) => {
-          it.text = t(it.text);
-          return it;
-        }) ?? [];
+        item.items =
+          item?.items?.map((it) => {
+            it.text = t(it.text);
+            return it;
+          }) ?? [];
         return { ...item, expanded: isLarge };
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   const {
@@ -47,7 +48,7 @@ export default function (props: any) {
         openMenu(e);
       });
     },
-    [openMenu]
+    [openMenu],
   );
 
   useEffect(() => {

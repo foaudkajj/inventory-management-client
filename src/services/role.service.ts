@@ -6,7 +6,6 @@ const getAll = (): Promise<Role[]> => {
   return result$;
 };
 
-
 export const RoleService = {
-  getAll
+  getAll,
 };

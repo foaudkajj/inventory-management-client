@@ -1,17 +1,21 @@
 import { DataGrid } from "devextreme-react";
-import { Column, Editing, Lookup, RequiredRule } from "devextreme-react/data-grid";
+import {
+  Column,
+  Editing,
+  Lookup,
+  RequiredRule,
+} from "devextreme-react/data-grid";
 import React, { useEffect, useState } from "react";
 import { BranchService, CityService, CountryService } from "../../services";
 import "./branches.scss";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "../../contexts/navigation";
 
-
 export default (props: any) => {
   const [branches, setBranches] = useState([]);
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
 
@@ -23,13 +27,12 @@ export default (props: any) => {
     const countries$ = CountryService.getAll();
     const cities$ = CityService.getAll();
     let promises = [branches$, countries$, cities$];
-    Promise.all(promises)
-      .then((result) => {
-        setBranches(result[0])
-        setCountries(result[1]);
-        setCities(result[2]);
-      });
-  }, [])
+    Promise.all(promises).then((result) => {
+      setBranches(result[0]);
+      setCountries(result[1]);
+      setCities(result[2]);
+    });
+  }, [currentPath, setNavigationData]);
 
   const onBranchInserted = (e) => {
     BranchService.insert(e.data);
@@ -43,7 +46,7 @@ export default (props: any) => {
 
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>{t('navigation.branches')}</h2>
+      <h2 className={"content-block"}>{t("navigation.branches")}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid
@@ -66,28 +69,16 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"} caption={t('column.name')}>
+          <Column dataField={"name"} caption={t("column.name")}>
             <RequiredRule />
           </Column>
-          <Column
-            dataField="countryId" caption={t('column.country')}>
-            <Lookup
-              dataSource={countries}
-              valueExpr="id"
-              displayExpr="name"
-            />
+          <Column dataField="countryId" caption={t("column.country")}>
+            <Lookup dataSource={countries} valueExpr="id" displayExpr="name" />
             <RequiredRule />
-
           </Column>
-          <Column
-            dataField="cityId" caption={t('column.city')}>
-            <Lookup
-              dataSource={cities}
-              valueExpr="id"
-              displayExpr="name"
-            />
+          <Column dataField="cityId" caption={t("column.city")}>
+            <Lookup dataSource={cities} valueExpr="id" displayExpr="name" />
             <RequiredRule />
-
           </Column>
         </DataGrid>
       </div>

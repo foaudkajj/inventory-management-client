@@ -1,4 +1,4 @@
-import {  User } from "../models";
+import { User } from "../models";
 import { AxiosService } from "./axios.service";
 
 const getAll = (): Promise<User[]> => {

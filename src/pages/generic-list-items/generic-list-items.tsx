@@ -3,7 +3,7 @@ import { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import React, { useEffect, useState } from "react";
 import { GenericListItemService, GenericListService } from "../../services";
 import "./generic-list-items.scss";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useNavigation } from "../../contexts/navigation";
 
 export default (props: any) => {
@@ -12,7 +12,7 @@ export default (props: any) => {
   const location = useLocation();
   const navigate = useNavigate();
   const listId = location.state?.id;
-  const genericListName = genericLists.find((element) => element.id == listId);
+  const genericListName = genericLists.find((element) => element.id === listId);
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
 
@@ -31,7 +31,7 @@ export default (props: any) => {
       setGenericListItems(results[0]);
       setGenericLists(results[1]);
     });
-  }, []);
+  }, [currentPath, setNavigationData, listId, navigate]);
 
   const onGenericListItemInserted = (e) => {
     GenericListItemService.insert(e.data);

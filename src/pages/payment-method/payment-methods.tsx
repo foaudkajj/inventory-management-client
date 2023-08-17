@@ -19,7 +19,7 @@ export default (props: any) => {
     PaymentMethodService.getAll().then((paymentMethods: PaymentMethod[]) => {
       setPaymentMethods(paymentMethods);
     });
-  }, []);
+  }, [currentPath, setNavigationData]);
 
   const onPaymentMethodInserted = (e) => {
     PaymentMethodService.insert(e.data);
@@ -30,10 +30,10 @@ export default (props: any) => {
   const onPaymentMethodRemoved = (e) => {
     PaymentMethodService.remove(e.data.id);
   };
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <React.Fragment>
-      <h2 className={"content-block"}>{t('navigation.payment_method')}</h2>
+      <h2 className={"content-block"}>{t("navigation.payment_method")}</h2>
 
       <div className={"content-block dx-card responsive-paddings"}>
         <DataGrid
@@ -56,7 +56,7 @@ export default (props: any) => {
             visible={false}
             formItem={{ visible: false }}
           ></Column>
-          <Column dataField={"name"} caption={t('column.name')}></Column>
+          <Column dataField={"name"} caption={t("column.name")}></Column>
         </DataGrid>
       </div>
     </React.Fragment>

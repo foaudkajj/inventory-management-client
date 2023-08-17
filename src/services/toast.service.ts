@@ -4,7 +4,7 @@ import notify from "devextreme/ui/notify";
 const showToast = async (
   status: "error" | "info" | "success" | "warning",
   text: string = undefined,
-  timer: number = 3000
+  timer: number = 3000,
 ) => {
   if (!text) {
     if (status === "error") {

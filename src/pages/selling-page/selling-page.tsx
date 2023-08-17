@@ -2,11 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import "./selling-page.scss";
 import { ProductCategoryService } from "../../services/product-category.service";
 import { ProductService } from "../../services/product.service";
-import { PaymentMethodRequest, Product, SaleProductRequest, SaleRequest } from "../../models";
+import {
+  PaymentMethodRequest,
+  Product,
+  SaleProductRequest,
+  SaleRequest,
+} from "../../models";
 import { useNavigation } from "../../contexts/navigation";
 import { useNavigate } from "react-router-dom";
 import { Popup, Position, ToolbarItem } from "devextreme-react/popup";
-import { PaymentMethodService, SellingService, ToastService } from "../../services";
+import {
+  PaymentMethodService,
+  SellingService,
+  ToastService,
+} from "../../services";
 import DataGrid, { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import { t } from "i18next";
 class SelectedProduct {
@@ -19,7 +28,7 @@ export default (props: any) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [productsInBasket, setProductsInBasket] = useState<SelectedProduct[]>(
-    []
+    [],
   );
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
@@ -46,7 +55,7 @@ export default (props: any) => {
       ];
       setProductsInBasket(allProductsInBasket);
     }
-    setIsFinishBtnDisabled(false)
+    setIsFinishBtnDisabled(false);
   };
 
   const goToHome = () => {
@@ -69,54 +78,54 @@ export default (props: any) => {
       setPopupVisible(false);
     },
   };
-  const [textBoxValue, setTextBoxValue] = useState('');
+  const [textBoxValue, setTextBoxValue] = useState("");
 
   const handleInputChange = (event) => {
     if (event.target.value.length > 0) {
-      setIsSearchBtnDisabled(false)
-    }
-    else setIsSearchBtnDisabled(true)
+      setIsSearchBtnDisabled(false);
+    } else setIsSearchBtnDisabled(true);
     setTextBoxValue(event.target.value);
-
   };
 
   const SerchOnClick = async () => {
-    const searchedProduct = await ProductService.getByBarcode(textBoxValue)
-    const result = (await searchedProduct).id
+    const searchedProduct = await ProductService.getByBarcode(textBoxValue);
+    const result = (await searchedProduct).id;
 
     if (searchedProduct) {
-      addToBasket(result)
-    }
-    else ToastService.showToast("warning", "selling-page.warnings.product-not-found")
-  }
+      addToBasket(result);
+    } else
+      ToastService.showToast(
+        "warning",
+        "selling-page.warnings.product-not-found",
+      );
+  };
   const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
   const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
   const finishSaleBtn = () => {
-    const saleRequest: SaleRequest = new SaleRequest()
+    const saleRequest: SaleRequest = new SaleRequest();
     let saleProductRequest = new SaleProductRequest();
-    let selectedPorduct = []
-    productsInBasket.forEach(product => {
+    let selectedPorduct = [];
+    productsInBasket.forEach((product) => {
       saleProductRequest = {
         productId: product.product.id,
         productCount: product.count,
-        sellingPrice: product.product.sellingPrice
-      }
-      selectedPorduct.push(saleProductRequest)
-    })
-    let paymentMethodRequest = new PaymentMethodRequest()
-    let selectedPayment = []
-    paymentMethods.map(paymentMethod => {
+        sellingPrice: product.product.sellingPrice,
+      };
+      selectedPorduct.push(saleProductRequest);
+    });
+    let paymentMethodRequest = new PaymentMethodRequest();
+    let selectedPayment = paymentMethods.map((paymentMethod) => {
       paymentMethodRequest = {
         paymentMethodId: paymentMethod.id,
-        amount: paymentMethod.Amount
-      }
-      selectedPayment.push(paymentMethodRequest)
-    })
-    saleRequest.products = selectedPorduct
+        amount: paymentMethod.Amount,
+      };
+      return paymentMethodRequest;
+    });
+    saleRequest.products = selectedPorduct;
     saleRequest.paymentMethods = selectedPayment;
 
-    SellingService.sellProducts(saleRequest)
-  }
+    SellingService.sellProducts(saleRequest);
+  };
   useEffect(() => {
     if (setNavigationData) {
       setNavigationData({ currentPath: currentPath });
@@ -197,18 +206,33 @@ export default (props: any) => {
         <div className="row1">
           <div className="column1">
             <div className="buttons">
-              <button className="btn1" onClick={SerchOnClick} disabled={isSearchBtnDisabled}>Ara</button>
-              <button className="btn2" onClick={finishSaleBtn} disabled={isFinishBtnDisabled}>
+              <button
+                className="btn1"
+                onClick={SerchOnClick}
+                disabled={isSearchBtnDisabled}
+              >
+                Ara
+              </button>
+              <button
+                className="btn2"
+                onClick={finishSaleBtn}
+                disabled={isFinishBtnDisabled}
+              >
                 <i className="fa fa-save"></i> selling-page.buttons.finish-sale
               </button>
               <button className="btn3" onClick={goToHome}>
-                <i className="fa fa-close"></i> {t('sellingPage.exit')}
+                <i className="fa fa-close"></i> {t("sellingPage.exit")}
               </button>
             </div>
             <div className="inputflex">
-              <input className="input1" onChange={handleInputChange} value={textBoxValue}></input>
+              <input
+                className="input1"
+                onChange={handleInputChange}
+                value={textBoxValue}
+              ></input>
               <button className="btn2">
-                <i className="fa-solid fa-store"></i>{t('column.category')}
+                <i className="fa-solid fa-store"></i>
+                {t("column.category")}
               </button>
             </div>
             <div className="orders">
@@ -223,7 +247,7 @@ export default (props: any) => {
                     <br />
                     <text className="btn3">{product?.product.barcode}</text>
                     <text className="orderP">
-                      {product.count} {t('sellingPage.amount')} *{" "}
+                      {product.count} {t("sellingPage.amount")} *{" "}
                       <b>{product.product.sellingPrice} ₺</b>{" "}
                     </text>
                     <hr />
@@ -265,22 +289,30 @@ export default (props: any) => {
             <div className="btxt">32,41 ₺</div>
           </div>
           <button className="btn5" onClick={() => tercihler()}>
-            <i className="fa-solid fa-money-bill"></i> {t('sellingPage.preferences')}
+            <i className="fa-solid fa-money-bill"></i>{" "}
+            {t("sellingPage.preferences")}
           </button>
-          <button className="btn3" onClick={() => { setProductsInBasket([]); setIsFinishBtnDisabled(true) }}>
+          <button
+            className="btn3"
+            onClick={() => {
+              setProductsInBasket([]);
+              setIsFinishBtnDisabled(true);
+            }}
+          >
             <i className="fa-solid fa-trash"></i> temizle
           </button>
           <button className="btn1">
-            <i className="fa-solid fa-arrow-left"></i> {t('sellingPage.get_last_sale')}
+            <i className="fa-solid fa-arrow-left"></i>{" "}
+            {t("sellingPage.get_last_sale")}
           </button>
           <button className="btn1">
-            <i className="fa-regular fa-user"></i> {t('sellingPage.customer')}
+            <i className="fa-regular fa-user"></i> {t("sellingPage.customer")}
           </button>
           <button className="btn1">
-            <i className="fa-solid fa-book"></i> {t('sellingPage.reports')}
+            <i className="fa-solid fa-book"></i> {t("sellingPage.reports")}
           </button>
           <button className="btn2">
-            <i className="fa-solid fa-bars"></i> {t('sellingPage.transactions')}
+            <i className="fa-solid fa-bars"></i> {t("sellingPage.transactions")}
           </button>
         </div>
       </div>

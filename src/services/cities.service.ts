@@ -6,7 +6,6 @@ const getAll = (): Promise<City[]> => {
   return result$;
 };
 
-
 export const CityService = {
-  getAll
+  getAll,
 };

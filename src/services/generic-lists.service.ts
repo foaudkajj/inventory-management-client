@@ -12,7 +12,10 @@ const insert = (row: GenericList): Promise<GenericList> => {
 };
 
 const modify = (key: string, row: GenericList): Promise<GenericList> => {
-  let result$ = AxiosService.put<GenericList>(`genericLists/update/${key}`, row);
+  let result$ = AxiosService.put<GenericList>(
+    `genericLists/update/${key}`,
+    row,
+  );
   return result$;
 };
 
