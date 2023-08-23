@@ -12,6 +12,7 @@ import {
   SellingPage,
   Products,
   ProductCategories,
+  Units,
 } from "./pages";
 
 const routes = [
@@ -62,6 +63,10 @@ const routes = [
   {
     path: "/productCategories",
     component: <ProductCategories />,
+  },
+  {
+    path: "/units",
+    component: <Units />,
   },
 ];
 

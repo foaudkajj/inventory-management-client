@@ -44,6 +44,10 @@ export const navigation: NavigationItem[] = [
         text: "column.category",
         path: "/productCategories",
       },
+      {
+        text: "navigation.units",
+        path: "/units",
+      },
     ],
   },
 ];

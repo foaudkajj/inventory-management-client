@@ -41,6 +41,8 @@ export const tr = {
     payment_method: "Ödeme yöntemleri",
     selling_page: "Satış sayfası",
     products: "Ürünler",
+    units: "Birimler",
+
   },
   ERROR: {
     USER_ALREADY_EXIST: "Kullanıcı adı daha önce kaydolmuştur.",

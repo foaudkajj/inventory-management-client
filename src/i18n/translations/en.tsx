@@ -41,6 +41,7 @@ export const en = {
     payment_method: "Payment methods",
     selling_page: "Selling page",
     products: "Products",
+    units: "Units",
   },
   ERROR: {
     USER_ALREADY_EXIST: "User Already Exist",
