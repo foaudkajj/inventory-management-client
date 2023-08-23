@@ -17,6 +17,7 @@ import {
   Users,
   Products,
   ProductCategories,
+  Units,
 } from "./pages";
 
 export default function () {
@@ -59,6 +60,10 @@ export default function () {
         <Route
           path="/productCategories"
           element={<ProductCategories currentPath={"/productCategories"} />}
+        />
+        <Route
+          path="/units"
+          element={<Units currentPath={"/units"} />}
         />
       </Routes>
       <Footer>

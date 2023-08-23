@@ -41,6 +41,8 @@ export const ar = {
     payment_method: "طرق الدفع",
     selling_page: "المبيعات",
     products: "المنتجات",
+    units: "الوحدات",
+
   },
   ERROR: {
     USER_ALREADY_EXIST: "تم إضافة المستخدم سابقاً",
