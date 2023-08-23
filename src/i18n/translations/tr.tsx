@@ -92,7 +92,7 @@ export const tr = {
     get_last_sale: "Son satışı getir",
     reports: "Raporlar",
     transactions: "İşlemler",
-    exit: "Çıkıl",
+    exit: "Çıkış",
     save: "Kaydet",
     search: "Ara",
     customer: "Müşteri",

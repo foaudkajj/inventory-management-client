@@ -18,6 +18,8 @@ import {
 } from "../../services";
 import DataGrid, { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import { t } from "i18next";
+import { Button } from 'devextreme-react/button';
+
 class SelectedProduct {
   count: number;
   product: Product;
@@ -206,23 +208,32 @@ export default (props: any) => {
         <div className="row1">
           <div className="column1">
             <div className="buttons">
-              <button
-                className="btn1"
+              <Button
+                text="Ara"
                 onClick={SerchOnClick}
                 disabled={isSearchBtnDisabled}
-              >
-                Ara
-              </button>
-              <button
+                width={100}
+              />
+
+              <Button
                 className="btn2"
                 onClick={finishSaleBtn}
                 disabled={isFinishBtnDisabled}
-              >
-                <i className="fa fa-save"></i> selling-page.buttons.finish-sale
-              </button>
-              <button className="btn3" onClick={goToHome}>
-                <i className="fa fa-close"></i> {t("sellingPage.exit")}
-              </button>
+                type="default"
+                icon="save"
+                text="selling-page.buttons.finish-sale"
+                width={100}
+
+              />
+              <Button
+                width={100}
+                className="btn3"
+                onClick={goToHome}
+                type="danger"
+                icon="remove"
+                text={t("sellingPage.exit")}
+
+              />
             </div>
             <div className="inputflex">
               <input
@@ -230,10 +241,13 @@ export default (props: any) => {
                 onChange={handleInputChange}
                 value={textBoxValue}
               ></input>
-              <button className="btn2">
+              <Button
+                className="btn2"
+                type="default"
+              >
                 <i className="fa-solid fa-store"></i>
                 {t("column.category")}
-              </button>
+              </Button>
             </div>
             <div className="orders">
               {productsInBasket?.map((product) => {
@@ -259,12 +273,14 @@ export default (props: any) => {
           <div className="column2">
             {categories.map((category) => {
               return (
-                <button
+                <Button
+                  className="categories"
+                  height={70}
                   id={category.id}
                   onClick={() => filterProducts(category.id)}
                 >
                   {category.name}
-                </button>
+                </Button>
               );
             })}
           </div>
@@ -288,32 +304,53 @@ export default (props: any) => {
             <div className="stxt">Lorem ipsum dolor sit</div>
             <div className="btxt">32,41 ₺</div>
           </div>
-          <button className="btn5" onClick={() => tercihler()}>
-            <i className="fa-solid fa-money-bill"></i>{" "}
-            {t("sellingPage.preferences")}
-          </button>
-          <button
-            className="btn3"
-            onClick={() => {
-              setProductsInBasket([]);
-              setIsFinishBtnDisabled(true);
-            }}
-          >
-            <i className="fa-solid fa-trash"></i> temizle
-          </button>
-          <button className="btn1">
-            <i className="fa-solid fa-arrow-left"></i>{" "}
-            {t("sellingPage.get_last_sale")}
-          </button>
-          <button className="btn1">
-            <i className="fa-regular fa-user"></i> {t("sellingPage.customer")}
-          </button>
-          <button className="btn1">
-            <i className="fa-solid fa-book"></i> {t("sellingPage.reports")}
-          </button>
-          <button className="btn2">
-            <i className="fa-solid fa-bars"></i> {t("sellingPage.transactions")}
-          </button>
+          <div className="buttonsAtBottom">
+            <Button
+              height={80}
+              type="success"
+              className="btn1" onClick={() => tercihler()}
+              icon="contentlayout"
+              text={t("sellingPage.preferences")}
+            />
+            <Button
+              height={80}
+              type="danger"
+              className="btn1"
+              icon="trash"
+              text="temizle"
+              onClick={() => {
+                setProductsInBasket([]);
+                setIsFinishBtnDisabled(true);
+              }}
+            />
+            <Button className="btn1"
+              height={80}
+              icon="arrowleft"
+              text={t("sellingPage.get_last_sale")}
+
+            >
+
+            </Button>
+            <Button
+              height={80}
+              className="btn1"
+              icon="user"
+              text={t("sellingPage.customer")}
+            />
+            <Button
+              height={80}
+              className="btn1"
+              icon="doc"
+              text={t("sellingPage.reports")}
+
+            />
+            <Button
+              height={80}
+              type="default"
+              className="btn1" icon="contentlayout"
+              text={t("sellingPage.transactions")}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
