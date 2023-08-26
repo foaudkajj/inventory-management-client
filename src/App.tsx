@@ -18,6 +18,7 @@ import { loadMessages, locale } from "devextreme/localization";
 import arMessages from "devextreme/localization/messages/ar.json";
 import { useTranslation } from "react-i18next";
 import { SideNavProvider } from "./contexts/side-nav";
+import { FooterProvider } from "./contexts/footer";
 
 function App() {
   const { user, loading } = useAuth();
@@ -50,9 +51,11 @@ export default function () {
       <AuthProvider>
         <NavigationProvider>
           <SideNavProvider>
-            <div className={`app ${screenSizeClass}`}>
-              <App />
-            </div>
+            <FooterProvider>
+              <div className={`app ${screenSizeClass}`}>
+                <App />
+              </div>
+            </FooterProvider>
           </SideNavProvider>
         </NavigationProvider>
       </AuthProvider>
