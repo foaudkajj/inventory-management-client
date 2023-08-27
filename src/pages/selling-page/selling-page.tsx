@@ -18,7 +18,8 @@ import {
 } from "../../services";
 import DataGrid, { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import { t } from "i18next";
-import { Button } from 'devextreme-react/button';
+import { Button } from "devextreme-react/button";
+import { TextBox } from "devextreme-react";
 
 class SelectedProduct {
   count: number;
@@ -30,7 +31,7 @@ export default (props: any) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [productsInBasket, setProductsInBasket] = useState<SelectedProduct[]>(
-    [],
+    []
   );
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
@@ -82,11 +83,13 @@ export default (props: any) => {
   };
   const [textBoxValue, setTextBoxValue] = useState("");
 
-  const handleInputChange = (event) => {
-    if (event.target.value.length > 0) {
+  const handleInputChange = (e) => {
+    if (e.value?.length > 0) {
       setIsSearchBtnDisabled(false);
-    } else setIsSearchBtnDisabled(true);
-    setTextBoxValue(event.target.value);
+    } else {
+      setIsSearchBtnDisabled(true);
+    }
+    setTextBoxValue(e.value);
   };
 
   const SerchOnClick = async () => {
@@ -98,7 +101,7 @@ export default (props: any) => {
     } else
       ToastService.showToast(
         "warning",
-        "selling-page.warnings.product-not-found",
+        "selling-page.warnings.product-not-found"
       );
   };
   const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
@@ -150,10 +153,6 @@ export default (props: any) => {
 
   return (
     <React.Fragment>
-      <script
-        src="https://kit.fontawesome.com/9f03ccac4b.js"
-        crossOrigin="anonymous"
-      ></script>
       <Popup
         visible={popupVisible}
         dragEnabled={false}
@@ -207,7 +206,7 @@ export default (props: any) => {
       <div className="big-row">
         <div className="row1">
           <div className="column1">
-            <div className="buttons">
+            <div className="column1-buttons">
               <Button
                 text="Ara"
                 onClick={SerchOnClick}
@@ -223,7 +222,6 @@ export default (props: any) => {
                 icon="save"
                 text="selling-page.buttons.finish-sale"
                 width={100}
-
               />
               <Button
                 width={100}
@@ -232,19 +230,21 @@ export default (props: any) => {
                 type="danger"
                 icon="remove"
                 text={t("sellingPage.exit")}
-
               />
-            </div>
-            <div className="inputflex">
-              <input
-                className="input1"
-                onChange={handleInputChange}
-                value={textBoxValue}
-              ></input>
               <Button
                 className="btn2"
                 type="default"
-              >
+                text={t("column.category")}
+                icon="fa-solid fa-store"
+              />
+            </div>
+            <div className="inputflex">
+              <TextBox
+                className="input1"
+                onValueChanged={handleInputChange}
+                value={textBoxValue}
+              ></TextBox>
+              <Button className="btn2" type="default">
                 <i className="fa-solid fa-store"></i>
                 {t("column.category")}
               </Button>
@@ -252,18 +252,18 @@ export default (props: any) => {
             <div className="orders">
               {productsInBasket?.map((product) => {
                 return (
-                  <div id={product.product.id}>
-                    <text className="ordertxt1">Lorem ipsum dolor sit</text>
+                  <div key={product.product.id}>
+                    <span className="ordertxt1">Lorem ipsum dolor sit</span>
                     <br />
                     <b>
-                      <text>{product?.product.name}</text>
+                      <span>{product?.product.name}</span>
                     </b>
                     <br />
-                    <text className="btn3">{product?.product.barcode}</text>
-                    <text className="orderP">
+                    <span className="btn3">{product?.product.barcode}</span>
+                    <span className="orderP">
                       {product.count} {t("sellingPage.amount")} *{" "}
                       <b>{product.product.sellingPrice} ₺</b>{" "}
-                    </text>
+                    </span>
                     <hr />
                   </div>
                 );
@@ -271,9 +271,10 @@ export default (props: any) => {
             </div>
           </div>
           <div className="column2">
-            {categories.map((category) => {
+            {categories.map((category, index) => {
               return (
                 <Button
+                  key={index}
                   className="categories"
                   height={70}
                   id={category.id}
@@ -288,34 +289,33 @@ export default (props: any) => {
             {filteredProducts.map((product) => {
               return (
                 <div
-                  id={product.id}
+                  key={product.id}
                   onClick={() => addToBasket(product.id)}
-                  className="containerr"
+                  className="product-container"
                 >
                   <img src={product?.pictureUrl} alt="" />
-                  <text>{product?.name}</text>
+                  <span>{product?.name}</span>
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="row2">
-          <div className="price">
+        <div className="selling-footer">
+        <div className="price">
             <div className="stxt">Lorem ipsum dolor sit</div>
             <div className="btxt">32,41 ₺</div>
           </div>
-          <div className="buttonsAtBottom">
+          <div className="footer-buttons">
             <Button
-              height={80}
               type="success"
-              className="btn1" onClick={() => tercihler()}
+              className="f-btn"
+              onClick={() => tercihler()}
               icon="contentlayout"
               text={t("sellingPage.preferences")}
             />
             <Button
-              height={80}
               type="danger"
-              className="btn1"
+              className="f-btn"
               icon="trash"
               text="temizle"
               onClick={() => {
@@ -323,31 +323,25 @@ export default (props: any) => {
                 setIsFinishBtnDisabled(true);
               }}
             />
-            <Button className="btn1"
-              height={80}
+            <Button
+              className="f-btn"
               icon="arrowleft"
               text={t("sellingPage.get_last_sale")}
-
-            >
-
-            </Button>
+            ></Button>
             <Button
-              height={80}
-              className="btn1"
+              className="f-btn"
               icon="user"
               text={t("sellingPage.customer")}
             />
             <Button
-              height={80}
-              className="btn1"
+              className="f-btn"
               icon="doc"
               text={t("sellingPage.reports")}
-
             />
             <Button
-              height={80}
               type="default"
-              className="btn1" icon="contentlayout"
+              className="f-btn"
+              icon="contentlayout"
               text={t("sellingPage.transactions")}
             />
           </div>
