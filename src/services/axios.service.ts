@@ -14,12 +14,17 @@ client.interceptors.request.use(function (config) {
 client.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error instanceof axios.AxiosError) {
+    if (error?.response?.status === 401) {
+      console.log("401 error");
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/";
+    } else if (error instanceof axios.AxiosError) {
       throw new Error(t(error?.response?.data?.message) ?? error.message);
     } else {
       throw error;
     }
-  },
+  }
 );
 
 async function get<T>(url: string, params?: object) {
