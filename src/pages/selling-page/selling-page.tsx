@@ -135,8 +135,8 @@ export default (props: any) => {
     if (setNavigationData) {
       setNavigationData({ currentPath: currentPath });
     }
-    const PricesInPasket = productsInBasket.map((product) => (product.count) * product.product.sellingPrice)
-    setTotalPrice(PricesInPasket.reduce((accumulator, currentValue) => accumulator + currentValue, 0))
+    const pricesInBasket = productsInBasket.map((product) => (product.count) * product.product.sellingPrice)
+    setTotalPrice(pricesInBasket.reduce((accumulator, currentValue) => accumulator + currentValue, 0))
     const Categories$ = ProductCategoryService.getAll();
     const Products$ = ProductService.getAll();
     const PaymentMethods$ = PaymentMethodService.getAll();
