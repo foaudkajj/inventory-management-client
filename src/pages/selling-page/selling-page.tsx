@@ -3,9 +3,7 @@ import "./selling-page.scss";
 import { ProductCategoryService } from "../../services/product-category.service";
 import { ProductService } from "../../services/product.service";
 import {
-  PaymentMethodRequest,
   Product,
-  SaleProductRequest,
   SaleRequest,
 } from "../../models";
 import { useNavigation } from "../../contexts/navigation";
@@ -64,20 +62,22 @@ export default (props: any) => {
     navigate("/home");
   };
 
-  const tercihler = () => {
-    setPopupVisible(true);
-  };
-
   const closeButtonOptions = {
-    text: "Close",
+    text: t("sellingPage.close"),
     onClick: () => setPopupVisible(false),
   };
   const okButtonOptions = {
-    text: "ok",
+    text: t("sellingPage.complateSale"),
     onClick: () => {
       const items = dataGridRef.current?.instance.getDataSource().items();
-      setPaymentMethods(items);
-      setPopupVisible(false);
+      const amounts = items.map(paymentMethod => paymentMethod.Amount);
+      const totalAmount = amounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+      if (totalAmount > 0) {
+        setPaymentMethods(items);
+        sale()
+        setPopupVisible(false);
+      }
+      else return ToastService.showToast("warning", t("messages.not-valid-paymentMethod"));
     },
   };
   const [textBoxValue, setTextBoxValue] = useState("");
@@ -106,30 +106,27 @@ export default (props: any) => {
   const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
   const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
   const finishSaleBtn = () => {
+    setPopupVisible(true);
+  };
+  const sale = () => {
     const saleRequest: SaleRequest = new SaleRequest();
-    let saleProductRequest = new SaleProductRequest();
-    let selectedPorduct = [];
-    productsInBasket.forEach((product) => {
-      saleProductRequest = {
+    const selectedPorduct =
+      productsInBasket.map((product) => ({
         productId: product.product.id,
         productCount: product.count,
         sellingPrice: product.product.sellingPrice,
-      };
-      selectedPorduct.push(saleProductRequest);
-    });
-    let paymentMethodRequest = new PaymentMethodRequest();
-    let selectedPayment = paymentMethods.map((paymentMethod) => {
-      paymentMethodRequest = {
+      })
+      )
+    const selectedPayment = paymentMethods
+      .filter(paymentMethod => paymentMethod.Amount > 0)
+      .map(paymentMethod => ({
         paymentMethodId: paymentMethod.id,
         amount: paymentMethod.Amount,
-      };
-      return paymentMethodRequest;
-    });
+      }));
     saleRequest.products = selectedPorduct;
     saleRequest.paymentMethods = selectedPayment;
-
     SellingService.sellProducts(saleRequest);
-  };
+  }
   const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
     if (setNavigationData) {
@@ -308,13 +305,13 @@ export default (props: any) => {
             <div className="btxt">{totalPrice} ₺</div>
           </div>
           <div className="footer-buttons">
-            <Button
+            {/* <Button
               type="success"
               className="f-btn"
               onClick={() => tercihler()}
               icon="contentlayout"
               text={t("sellingPage.preferences")}
-            />
+            /> */}
             <Button
               type="danger"
               className="f-btn"

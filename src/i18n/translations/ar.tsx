@@ -96,5 +96,7 @@ export const ar = {
     save: "حفظ",
     search: "بحث",
     customer: "المشتري",
+    complateSale: "اكمال البيع",
+    close: "اغلاق"
   },
 };

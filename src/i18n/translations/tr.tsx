@@ -90,11 +90,13 @@ export const tr = {
     preferences: "Tercihler",
     clean: "Temizle",
     get_last_sale: "Son satışı getir",
-    reports: "Raporlar",
+    reports: "enporlar",
     transactions: "İşlemler",
     exit: "Çıkış",
     save: "Kaydet",
     search: "Ara",
     customer: "Müşteri",
+    complateSale: "Satışı tamamla",
+    close: "kapat"
   },
 };

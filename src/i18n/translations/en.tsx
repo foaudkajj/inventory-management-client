@@ -95,5 +95,7 @@ export const en = {
     save: "Save",
     search: "Search",
     customer: "Customer",
+    complateSale: "Complate the sale",
+    close: "close"
   },
 };
