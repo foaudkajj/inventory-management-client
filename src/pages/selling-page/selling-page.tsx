@@ -311,6 +311,7 @@ export default (props: any) => {
               icon="trash"
               text="temizle"
               onClick={() => {
+                setPaymentMethods([])
                 setProductsInBasket([]);
                 setIsFinishBtnDisabled(true);
               }}
