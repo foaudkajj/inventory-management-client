@@ -305,13 +305,6 @@ export default (props: any) => {
             <div className="btxt">{totalPrice} ₺</div>
           </div>
           <div className="footer-buttons">
-            {/* <Button
-              type="success"
-              className="f-btn"
-              onClick={() => tercihler()}
-              icon="contentlayout"
-              text={t("sellingPage.preferences")}
-            /> */}
             <Button
               type="danger"
               className="f-btn"

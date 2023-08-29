@@ -30,6 +30,7 @@ export const tr = {
     unsucessful: "Bilinmeyen hata oluştu",
     sucessful: "İşlem başarılı",
     "not-valid-credentials": "Kullanıcı adı ve/veya şifreniz hatalı.",
+    "not-valid-paymentMethod": "ödemeler sıfırdan büyük olmalı"
   },
   navigation: {
     "home-page": "Ana Sayfa",
