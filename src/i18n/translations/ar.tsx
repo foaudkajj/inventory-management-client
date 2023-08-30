@@ -30,6 +30,7 @@ export const ar = {
     unsucessful: "حدث خطأ غير متوقع.",
     sucessful: "تمت العملية بنجاح",
     "not-valid-credentials": "اسم المستخدم أو كلمة المرور غير صحيحة",
+    "not-valid-paymentMethod": "يجب ان تكون المدفوعات اكبر من الصفر"
   },
   navigation: {
     "home-page": "الصفحة الرئيسية",
@@ -96,5 +97,9 @@ export const ar = {
     save: "حفظ",
     search: "بحث",
     customer: "المشتري",
+    complateSale: "اكمال البيع",
+    close: "اغلاق",
+    all: "جميع الفئات",
+    total: "المجموع"
   },
 };

@@ -3,9 +3,7 @@ import "./selling-page.scss";
 import { ProductCategoryService } from "../../services/product-category.service";
 import { ProductService } from "../../services/product.service";
 import {
-  PaymentMethodRequest,
   Product,
-  SaleProductRequest,
   SaleRequest,
 } from "../../models";
 import { useNavigation } from "../../contexts/navigation";
@@ -71,10 +69,6 @@ export default (props: any) => {
     navigate("/home");
   };
 
-  const onPaymentBtnClicked = () => {
-    setPaymentPopupVisible(true);
-  };
-
   const handleInputChange = (e) => {
     if (e.value?.length > 0) {
       setIsSearchBtnDisabled(false);
@@ -97,31 +91,26 @@ export default (props: any) => {
       );
   };
 
-  const onSaleBtnClicked = () => {
+  const sale = () => {
     const saleRequest: SaleRequest = new SaleRequest();
-    let saleProductRequest = new SaleProductRequest();
-    let selectedPorduct = [];
-    productsInBasket.forEach((product) => {
-      saleProductRequest = {
+    const selectedPorduct =
+      productsInBasket.map((product) => ({
         productId: product.product.id,
         productCount: product.count,
         sellingPrice: product.product.sellingPrice,
-      };
-      selectedPorduct.push(saleProductRequest);
-    });
-    let paymentMethodRequest = new PaymentMethodRequest();
-    let selectedPayment = paymentMethods.map((paymentMethod) => {
-      paymentMethodRequest = {
+      })
+      )
+    const selectedPayment = paymentMethods
+      .filter(paymentMethod => paymentMethod.Amount > 0)
+      .map(paymentMethod => ({
         paymentMethodId: paymentMethod.id,
         amount: paymentMethod.Amount,
-      };
-      return paymentMethodRequest;
-    });
+      }));
     saleRequest.products = selectedPorduct;
     saleRequest.paymentMethods = selectedPayment;
-
     SellingService.sellProducts(saleRequest);
-  };
+  }
+
   const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
     if (setNavigationData) {
@@ -164,13 +153,19 @@ export default (props: any) => {
           toolbar="bottom"
           location="before"
           options={{
-            text: "ok",
+            text: t("selling-page.complateSale"),
             onClick: () => {
               const items = dataGridRef.current?.instance
                 .getDataSource()
                 .items();
-              setPaymentMethods(items);
-              setPaymentPopupVisible(false);
+              const amounts = items.map(paymentMethod => paymentMethod.Amount);
+              const totalAmount = amounts.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+              if (totalAmount > 0) {
+                setPaymentMethods(items);
+                sale()
+                setPaymentPopupVisible(false);
+              }
+              else return ToastService.showToast("warning", t("messages.not-valid-paymentMethod"));
             },
           }}
         />
@@ -179,7 +174,7 @@ export default (props: any) => {
           toolbar="bottom"
           location="after"
           options={{
-            text: "Close",
+            text: t("selling-page.close"),
             onClick: () => setPaymentPopupVisible(false),
           }}
         />
@@ -221,7 +216,7 @@ export default (props: any) => {
 
               <Button
                 className="btn2"
-                onClick={onSaleBtnClicked}
+                onClick={() => setPaymentPopupVisible(true)}
                 disabled={isFinishBtnDisabled}
                 type="default"
                 icon="save"
@@ -253,7 +248,7 @@ export default (props: any) => {
               {productsInBasket?.map((product) => {
                 return (
                   <div key={product.product.id}>
-                    <span className="ordertxt1">Lorem ipsum dolor sit</span>
+                    <span className="ordertxt1"></span>
                     <br />
                     <b>
                       <span>{product?.product.name}</span>
@@ -308,23 +303,17 @@ export default (props: any) => {
         </div>
         <div className="selling-footer">
           <div className="price">
-            <div className="stxt">Lorem ipsum dolor sit</div>
+            <div className="stxt">{t("selling-page.total")}</div>
             <div className="btxt">{totalPrice} ₺</div>
           </div>
           <div className="footer-buttons">
-            <Button
-              type="success"
-              className="f-btn"
-              onClick={() => onPaymentBtnClicked()}
-              icon="contentlayout"
-              text={t("selling-page.preferences")}
-            />
             <Button
               type="danger"
               className="f-btn"
               icon="trash"
               text="temizle"
               onClick={() => {
+                setPaymentMethods([]);
                 setProductsInBasket([]);
                 setIsFinishBtnDisabled(true);
               }}
