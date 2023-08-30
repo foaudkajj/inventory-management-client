@@ -50,7 +50,6 @@ export default (props: any) => {
       setFilteredProducts(products.filter((value) => value.categoryId === id));
     }
   };
-
   const addToBasket = (id: string) => {
     const productInBasket = productsInBasket.find((p) => p.product.id === id);
     if (productInBasket) {
@@ -123,10 +122,13 @@ export default (props: any) => {
 
     SellingService.sellProducts(saleRequest);
   };
+  const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
     if (setNavigationData) {
       setNavigationData({ currentPath: currentPath });
     }
+    const pricesInBasket = productsInBasket.map((product) => (product.count) * product.product.sellingPrice)
+    setTotalPrice(pricesInBasket.reduce((accumulator, currentValue) => accumulator + currentValue, 0))
     const Categories$ = ProductCategoryService.getAll();
     const Products$ = ProductService.getAll();
     const PaymentMethods$ = PaymentMethodService.getAll();
@@ -141,7 +143,7 @@ export default (props: any) => {
       }));
       setPaymentMethods(paymentMethodsAmount);
     });
-  }, [currentPath, setNavigationData]);
+  }, [currentPath, setNavigationData, productsInBasket]);
 
   return (
     <React.Fragment>
@@ -307,7 +309,7 @@ export default (props: any) => {
         <div className="selling-footer">
           <div className="price">
             <div className="stxt">Lorem ipsum dolor sit</div>
-            <div className="btxt">32,41 ₺</div>
+            <div className="btxt">{totalPrice} ₺</div>
           </div>
           <div className="footer-buttons">
             <Button
