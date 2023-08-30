@@ -80,7 +80,7 @@
   gap: 20px;
 }
 
-.column3 > div > img {
+.column3>div>img {
   width: 132px;
   height: 92px;
   // margin: 1px;
@@ -111,7 +111,7 @@ button {
   cursor: pointer;
 }
 
-.column3 > div > text {
+.column3>div>text {
   position: absolute;
   bottom: 0;
   background: rgb(0, 0, 0);
@@ -152,12 +152,11 @@ button {
 .stxt {
   top: 0;
   left: 0;
-  font-size: small;
+  font-size: 20px;
   color: #f1f1f1;
 }
 
 .btxt {
-  padding-top: 5%;
   padding-left: 69%;
   font-size: xx-large;
   color: #f1f1f1;
@@ -171,7 +170,7 @@ button {
   border-top: 0px;
 }
 
-.orders > div {
+.orders>div {
   margin-top: -7px;
 }
 

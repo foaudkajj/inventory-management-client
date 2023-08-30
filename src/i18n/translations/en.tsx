@@ -30,6 +30,7 @@ export const en = {
     unsucessful: "Unknown error occurred",
     sucessful: "Successful",
     "not-valid-credentials": "Username or password is incorrect.",
+    "not-valid-paymentMethod": "the payments should be more then zero"
   },
   navigation: {
     "home-page": "Home Page",
@@ -95,5 +96,9 @@ export const en = {
     save: "Save",
     search: "Search",
     customer: "Customer",
+    complateSale: "Complate the sale",
+    close: "close",
+    all: "All Categories",
+    total: "Total"
   },
 };
