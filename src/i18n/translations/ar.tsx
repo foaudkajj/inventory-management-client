@@ -84,7 +84,7 @@ export const ar = {
     unit: "الوحدة",
     category: "الفئة",
   },
-  sellingPage: {
+  'selling-page': {
     choose_payment_method: "اختر طريقة الدفع",
     amount: "الكمية",
     preferences: "التفضيلات",

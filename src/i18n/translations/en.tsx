@@ -83,7 +83,7 @@ export const en = {
     unit: "unit",
     category: "category",
   },
-  sellingPage: {
+  'selling-page': {
     choose_payment_method: "Choose your payment method",
     amount: "Amount",
     preferences: "Preferences",

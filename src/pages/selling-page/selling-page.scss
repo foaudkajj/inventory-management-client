@@ -1,18 +1,21 @@
-.big-row {
+.page-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 94vh;
+  margin-top: 10px;
 }
 
-.row1 {
+.selling-content {
   display: flex;
   width: 100%;
   height: 90%;
+  gap: 10px;
 }
 
 .selling-footer {
   display: flex;
+  gap: 10px;
   width: 100%;
   height: 10%;
 
@@ -31,12 +34,25 @@
 .column1 {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   height: 100%;
   width: 30%;
 
   .column1-buttons {
     display: flex;
     gap: 10px;
+
+    .dx-button {
+      width: 25%;
+    }
+  }
+
+  .search-bar {
+    display: flex;
+
+    .search-input {
+      width: 100%;
+    }
   }
 }
 
@@ -49,9 +65,9 @@
   align-content: flex-start;
 
   .dx-button {
-    background-color: gold;
+    background-color: #f6ef2c;
     height: 70px;
-    width: 130px;
+    width: 48%;
   }
 }
 
@@ -85,15 +101,6 @@
   height: 80px;
 }
 
-.input1 {
-  width: 325px;
-  height: 30px;
-}
-
-.inputflex {
-  display: flex;
-}
-
 button {
   &:hover {
     color: #ff7a59;
@@ -124,6 +131,7 @@ button {
   width: 132px;
   height: 92px;
   background-color: white;
+  cursor: pointer;
 
   span {
     // position: absolute;
@@ -158,6 +166,9 @@ button {
 .orders {
   display: flex;
   flex-direction: column;
+  border: 1px solid grey;
+  border-bottom: 0px;
+  border-top: 0px;
 }
 
 .orders > div {
@@ -174,9 +185,4 @@ hr {
 
 .ordertxt1 {
   font-size: 10px;
-}
-
-.categories {
-  width: 50%;
-  background-color: #f6ef2c !important;
 }

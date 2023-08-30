@@ -29,6 +29,7 @@ class SelectedProduct {
 export default (props: any) => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [textBoxValue, setTextBoxValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [productsInBasket, setProductsInBasket] = useState<SelectedProduct[]>(
     []
@@ -36,12 +37,18 @@ export default (props: any) => {
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
   const navigate = useNavigate();
-  const [popupVisible, setPopupVisible] = useState(false);
+  const [paymentPopupVisible, setPaymentPopupVisible] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState([]);
+  const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
+  const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
   const dataGridRef = useRef(null);
 
   const filterProducts = (id: string) => {
-    setFilteredProducts(products.filter((value) => value.categoryId === id));
+    if (!id) {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(products.filter((value) => value.categoryId === id));
+    }
   };
 
   const addToBasket = (id: string) => {
@@ -65,23 +72,9 @@ export default (props: any) => {
     navigate("/home");
   };
 
-  const tercihler = () => {
-    setPopupVisible(true);
+  const onPaymentBtnClicked = () => {
+    setPaymentPopupVisible(true);
   };
-
-  const closeButtonOptions = {
-    text: "Close",
-    onClick: () => setPopupVisible(false),
-  };
-  const okButtonOptions = {
-    text: "ok",
-    onClick: () => {
-      const items = dataGridRef.current?.instance.getDataSource().items();
-      setPaymentMethods(items);
-      setPopupVisible(false);
-    },
-  };
-  const [textBoxValue, setTextBoxValue] = useState("");
 
   const handleInputChange = (e) => {
     if (e.value?.length > 0) {
@@ -92,9 +85,9 @@ export default (props: any) => {
     setTextBoxValue(e.value);
   };
 
-  const SerchOnClick = async () => {
+  const onSerchClick = async () => {
     const searchedProduct = await ProductService.getByBarcode(textBoxValue);
-    const result = (await searchedProduct).id;
+    const result = searchedProduct.id;
 
     if (searchedProduct) {
       addToBasket(result);
@@ -104,9 +97,8 @@ export default (props: any) => {
         "selling-page.warnings.product-not-found"
       );
   };
-  const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
-  const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
-  const finishSaleBtn = () => {
+
+  const onSaleBtnClicked = () => {
     const saleRequest: SaleRequest = new SaleRequest();
     let saleProductRequest = new SaleProductRequest();
     let selectedPorduct = [];
@@ -154,12 +146,12 @@ export default (props: any) => {
   return (
     <React.Fragment>
       <Popup
-        visible={popupVisible}
+        visible={paymentPopupVisible}
         dragEnabled={false}
         hideOnOutsideClick={false}
         showCloseButton={false}
         showTitle={true}
-        title={t("sellingPage.choose_payment_method")}
+        title={t("selling-page.choose_payment_method")}
         container=".dx-viewport"
         width={800}
         height={700}
@@ -169,13 +161,25 @@ export default (props: any) => {
           widget="dxButton"
           toolbar="bottom"
           location="before"
-          options={okButtonOptions}
+          options={{
+            text: "ok",
+            onClick: () => {
+              const items = dataGridRef.current?.instance
+                .getDataSource()
+                .items();
+              setPaymentMethods(items);
+              setPaymentPopupVisible(false);
+            },
+          }}
         />
         <ToolbarItem
           widget="dxButton"
           toolbar="bottom"
           location="after"
-          options={closeButtonOptions}
+          options={{
+            text: "Close",
+            onClick: () => setPaymentPopupVisible(false),
+          }}
         />
         <DataGrid
           keyExpr="id"
@@ -197,39 +201,36 @@ export default (props: any) => {
           </Column>
           <Column
             dataField="Amount"
-            caption={t("sellingPage.amount")}
+            caption={t("selling-page.amount")}
             dataType="number"
             format="currency"
           ></Column>
         </DataGrid>
       </Popup>
-      <div className="big-row">
-        <div className="row1">
+      <div className="page-container">
+        <div className="selling-content">
           <div className="column1">
             <div className="column1-buttons">
               <Button
                 text="Ara"
-                onClick={SerchOnClick}
+                onClick={onSerchClick}
                 disabled={isSearchBtnDisabled}
-                width={100}
               />
 
               <Button
                 className="btn2"
-                onClick={finishSaleBtn}
+                onClick={onSaleBtnClicked}
                 disabled={isFinishBtnDisabled}
                 type="default"
                 icon="save"
                 text="selling-page.buttons.finish-sale"
-                width={100}
               />
               <Button
-                width={100}
                 className="btn3"
                 onClick={goToHome}
                 type="danger"
                 icon="remove"
-                text={t("sellingPage.exit")}
+                text={t("selling-page.exit")}
               />
               <Button
                 className="btn2"
@@ -238,16 +239,13 @@ export default (props: any) => {
                 icon="fa-solid fa-store"
               />
             </div>
-            <div className="inputflex">
+            <div className="search-bar">
               <TextBox
-                className="input1"
+                className="search-input"
                 onValueChanged={handleInputChange}
                 value={textBoxValue}
+                placeholder={t("selling-page.search")}
               ></TextBox>
-              <Button className="btn2" type="default">
-                <i className="fa-solid fa-store"></i>
-                {t("column.category")}
-              </Button>
             </div>
             <div className="orders">
               {productsInBasket?.map((product) => {
@@ -261,7 +259,7 @@ export default (props: any) => {
                     <br />
                     <span className="btn3">{product?.product.barcode}</span>
                     <span className="orderP">
-                      {product.count} {t("sellingPage.amount")} *{" "}
+                      {product.count} {t("selling-page.amount")} *{" "}
                       <b>{product.product.sellingPrice} ₺</b>{" "}
                     </span>
                     <hr />
@@ -271,12 +269,18 @@ export default (props: any) => {
             </div>
           </div>
           <div className="column2">
+            <Button
+              width={"100%"}
+              className="categories"
+              onClick={() => filterProducts(null)}
+            >
+              {t("selling-page.all")}
+            </Button>
             {categories.map((category, index) => {
               return (
                 <Button
                   key={index}
                   className="categories"
-                  height={70}
                   id={category.id}
                   onClick={() => filterProducts(category.id)}
                 >
@@ -301,7 +305,7 @@ export default (props: any) => {
           </div>
         </div>
         <div className="selling-footer">
-        <div className="price">
+          <div className="price">
             <div className="stxt">Lorem ipsum dolor sit</div>
             <div className="btxt">32,41 ₺</div>
           </div>
@@ -309,9 +313,9 @@ export default (props: any) => {
             <Button
               type="success"
               className="f-btn"
-              onClick={() => tercihler()}
+              onClick={() => onPaymentBtnClicked()}
               icon="contentlayout"
-              text={t("sellingPage.preferences")}
+              text={t("selling-page.preferences")}
             />
             <Button
               type="danger"
@@ -326,23 +330,23 @@ export default (props: any) => {
             <Button
               className="f-btn"
               icon="arrowleft"
-              text={t("sellingPage.get_last_sale")}
+              text={t("selling-page.get_last_sale")}
             ></Button>
             <Button
               className="f-btn"
               icon="user"
-              text={t("sellingPage.customer")}
+              text={t("selling-page.customer")}
             />
             <Button
               className="f-btn"
               icon="doc"
-              text={t("sellingPage.reports")}
+              text={t("selling-page.reports")}
             />
             <Button
               type="default"
               className="f-btn"
               icon="contentlayout"
-              text={t("sellingPage.transactions")}
+              text={t("selling-page.transactions")}
             />
           </div>
         </div>

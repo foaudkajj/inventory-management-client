@@ -42,7 +42,6 @@ export const tr = {
     selling_page: "Satış sayfası",
     products: "Ürünler",
     units: "Birimler",
-
   },
   ERROR: {
     USER_ALREADY_EXIST: "Kullanıcı adı daha önce kaydolmuştur.",
@@ -84,7 +83,7 @@ export const tr = {
     unit: "Birim",
     category: "Kategori",
   },
-  sellingPage: {
+  "selling-page": {
     choose_payment_method: "Ödeme yöntemini seç",
     amount: "Miktar",
     preferences: "Tercihler",
