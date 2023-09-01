@@ -12,7 +12,7 @@ Welcome to the Inventory Management Client Repository! This project is a React w
 - [Selling Page](#selling-page)
 - [Context](#context)
 - [Contributing](#contributing)
-- [License](#license)
+- [Screens](#screens)
 
 ## Introduction
 The Inventory Management Client is a React-based application that offers a comprehensive user interface to interact with a backend API. It aims to simplify inventory management tasks by providing CRUD operations, visualization through DevExtreme components, multi-language support via i18n, and a specialized selling page to facilitate efficient product categorization.
@@ -64,6 +64,28 @@ Contributions are encouraged! To enhance the application's functionality or addr
 4. Commit your modifications: `git commit -m "Add new feature"`
 5. Push your branch: `git push origin feature/new-feature`
 6. Create a Pull Request, outlining your changes.
+
+## Screens 
+
+- **Selling Page**
+
+![image](https://github.com/foaudkajj/inventory-management-client/assets/94835822/092f0470-f3d9-49cf-9ebd-c432e9afa08c)
+
+  - **Before the sale Payment Method chooser popup**
+
+![image](https://github.com/foaudkajj/inventory-management-client/assets/94835822/067c0113-8eec-4bc9-b36f-0858b5d8ed04)
+
+- **Filtered Products by Categories**
+
+![image](https://github.com/foaudkajj/inventory-management-client/assets/94835822/2672c261-c029-4239-8181-f74b7f63317e)
+
+- **You can change the language**
+
+![image](https://github.com/foaudkajj/inventory-management-client/assets/94835822/d0cc4c2c-00cf-44b5-a578-106144231950)
+
+- **Other pages to get insert modify and remove data**
+  
+![image](https://github.com/foaudkajj/inventory-management-client/assets/94835822/c25ede41-1119-4f1c-90b6-9423f801b640)
 
 
 Happy coding!
