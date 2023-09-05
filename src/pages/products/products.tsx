@@ -133,7 +133,6 @@ export default (props: any) => {
             <Lookup dataSource={categories} valueExpr="id" displayExpr="name" />
           </Column>
           <Column dataField={"colorId"} caption={t("navigation.colors")}>
-            <RequiredRule />
             <Lookup dataSource={colors} valueExpr="id" displayExpr="name" />
           </Column>
           <Column dataField={"description"} caption={t("column.description")}>

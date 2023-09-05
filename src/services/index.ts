@@ -14,3 +14,5 @@ export * from "./generic-list-items.service";
 export * from "./payment-method.service";
 export * from "./selling.service";
 export * from "./units.service";
+export * from "./customer-info.service";
+export * from "./merchant.service";

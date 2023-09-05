@@ -18,6 +18,7 @@ import DataGrid, { Column, Editing, Lookup } from "devextreme-react/data-grid";
 import { t } from "i18next";
 import { Button } from "devextreme-react/button";
 import { TextBox } from "devextreme-react";
+import CustomerInfoSelection from "../../components/customer-info/customer-info";
 
 class SelectedProduct {
   count: number;
@@ -29,9 +30,7 @@ export default (props: any) => {
   const [products, setProducts] = useState([]);
   const [textBoxValue, setTextBoxValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [productsInBasket, setProductsInBasket] = useState<SelectedProduct[]>(
-    []
-  );
+  const [productsInBasket, setProductsInBasket] = useState<SelectedProduct[]>([]);
   const { setNavigationData } = useNavigation();
   const { currentPath } = props;
   const navigate = useNavigate();
@@ -39,8 +38,16 @@ export default (props: any) => {
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [isSearchBtnDisabled, setIsSearchBtnDisabled] = useState(true);
   const [isFinishBtnDisabled, setIsFinishBtnDisabled] = useState(true);
-  const dataGridRef = useRef(null);
-
+  const paymentDataGridRef = useRef(null);
+  const [customerPopupVisible, setCustomerPopupVisible] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [selectedCustomerId, setSelectedCustomerId] = useState();
+  const setCustomerId = (selectedCustomerId) => {
+    setSelectedCustomerId(selectedCustomerId);
+  };
+  const setpopupVisible = (popupVisible) => {
+    setCustomerPopupVisible(popupVisible)
+  };
   const filterProducts = (id: string) => {
     if (!id) {
       setFilteredProducts(products);
@@ -48,6 +55,7 @@ export default (props: any) => {
       setFilteredProducts(products.filter((value) => value.categoryId === id));
     }
   };
+
   const addToBasket = (id: string) => {
     const productInBasket = productsInBasket.find((p) => p.product.id === id);
     if (productInBasket) {
@@ -81,7 +89,6 @@ export default (props: any) => {
   const onSerchClick = async () => {
     const searchedProduct = await ProductService.getByBarcode(textBoxValue);
     const result = searchedProduct.id;
-
     if (searchedProduct) {
       addToBasket(result);
     } else
@@ -92,6 +99,9 @@ export default (props: any) => {
   };
 
   const sale = () => {
+    const totalPayments = paymentMethods.map(payment => payment.Amount).reduce(
+      (accumulator, currentValue) => accumulator + currentValue);
+    if (totalPrice !== totalPayments) { throw ToastService.showToast("warning", t("messages.not-valid-amunt")) }
     const saleRequest: SaleRequest = new SaleRequest();
     const selectedPorduct =
       productsInBasket.map((product) => ({
@@ -108,10 +118,10 @@ export default (props: any) => {
       }));
     saleRequest.products = selectedPorduct;
     saleRequest.paymentMethods = selectedPayment;
+    if (selectedCustomerId) { saleRequest.customerInfoId = selectedCustomerId; }
     SellingService.sellProducts(saleRequest);
   }
 
-  const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
     if (setNavigationData) {
       setNavigationData({ currentPath: currentPath });
@@ -155,7 +165,7 @@ export default (props: any) => {
           options={{
             text: t("selling-page.complateSale"),
             onClick: () => {
-              const items = dataGridRef.current?.instance
+              const items = paymentDataGridRef.current?.instance
                 .getDataSource()
                 .items();
               const amounts = items.map(paymentMethod => paymentMethod.Amount);
@@ -165,7 +175,7 @@ export default (props: any) => {
                 sale()
                 setPaymentPopupVisible(false);
               }
-              else return ToastService.showToast("warning", t("messages.not-valid-paymentMethod"));
+              else return ToastService.showToast("warning", t("messages.not-valid-payment-method"));
             },
           }}
         />
@@ -182,7 +192,7 @@ export default (props: any) => {
           keyExpr="id"
           dataSource={paymentMethods}
           showBorders={true}
-          ref={dataGridRef}
+          ref={paymentDataGridRef}
         >
           <Editing mode="cell" allowUpdating={true} />
           <Column
@@ -204,7 +214,8 @@ export default (props: any) => {
           ></Column>
         </DataGrid>
       </Popup>
-      <div className="page-container">
+      <CustomerInfoSelection popupVisible={customerPopupVisible} setCustomerId={setCustomerId} setpopupVisible={setpopupVisible} customerId={selectedCustomerId} />
+      < div className="page-container">
         <div className="selling-content">
           <div className="column1">
             <div className="column1-buttons">
@@ -254,11 +265,13 @@ export default (props: any) => {
                       <span>{product?.product.name}</span>
                     </b>
                     <br />
-                    <span className="btn3">{product?.product.barcode}</span>
-                    <span className="orderP">
-                      {product.count} {t("selling-page.amount")} *{" "}
-                      <b>{product.product.sellingPrice} ₺</b>{" "}
-                    </span>
+                    <div className="spanOfOrder">
+                      <span className="btn3">{product?.product.barcode}</span>
+                      <span>
+                        {product.count} {t("selling-page.amount")} *{" "}
+                        <b>{product.product.sellingPrice} ₺</b>{" "}
+                      </span>
+                    </div>
                     <hr />
                   </div>
                 );
@@ -311,10 +324,11 @@ export default (props: any) => {
               type="danger"
               className="f-btn"
               icon="trash"
-              text="temizle"
+              text={t("selling-page.clean")}
               onClick={() => {
                 setPaymentMethods([]);
                 setProductsInBasket([]);
+                setSelectedCustomerId(null);
                 setIsFinishBtnDisabled(true);
               }}
             />
@@ -327,6 +341,7 @@ export default (props: any) => {
               className="f-btn"
               icon="user"
               text={t("selling-page.customer")}
+              onClick={() => setCustomerPopupVisible(true)}
             />
             <Button
               className="f-btn"
