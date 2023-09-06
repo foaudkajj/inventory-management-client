@@ -172,10 +172,7 @@ button {
 
 .orders>div {
   margin-top: -7px;
-}
-
-.orderP {
-  padding-left: 66%;
+  width: 100%;
 }
 
 hr {
@@ -184,4 +181,10 @@ hr {
 
 .ordertxt1 {
   font-size: 10px;
+}
+
+.spanOfOrder {
+  display: flex;
+  margin-bottom: -53px;
+  justify-content: space-between;
 }

@@ -30,7 +30,8 @@ export const en = {
     unsucessful: "Unknown error occurred",
     sucessful: "Successful",
     "not-valid-credentials": "Username or password is incorrect.",
-    "not-valid-paymentMethod": "the payments should be more then zero"
+    "not-valid-payment-method": "Total Amounts must be more then zero",
+    "not-valid-amunt": "Total Amounts must be equal to the Total Prices"
   },
   navigation: {
     "home-page": "Home Page",
@@ -82,7 +83,8 @@ export const en = {
     sellingPrice: "selling Price",
     pictureUrl: "picture Url",
     unit: "unit",
-    category: "category",
+    category: "Category",
+    phone: "Phone Number",
   },
   'selling-page': {
     choose_payment_method: "Choose your payment method",
@@ -99,6 +101,8 @@ export const en = {
     complateSale: "Complate the sale",
     close: "close",
     all: "All Categories",
-    total: "Total"
+    total: "Total Prices",
+    ok: "Ok",
+    "choose_customer_info": "Choose Customer",
   },
 };

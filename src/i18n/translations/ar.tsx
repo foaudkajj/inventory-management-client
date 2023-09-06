@@ -30,7 +30,8 @@ export const ar = {
     unsucessful: "حدث خطأ غير متوقع.",
     sucessful: "تمت العملية بنجاح",
     "not-valid-credentials": "اسم المستخدم أو كلمة المرور غير صحيحة",
-    "not-valid-paymentMethod": "يجب ان تكون المدفوعات اكبر من الصفر"
+    "not-valid-payment-method": "يجب ان تكون المدفوعات اكبر من الصفر",
+    "not-valid-amunt": "يجب ان تكون المدفوعات تساوي مجموع المبيع"
   },
   navigation: {
     "home-page": "الصفحة الرئيسية",
@@ -84,6 +85,7 @@ export const ar = {
     pictureUrl: "رابط الصورة",
     unit: "الوحدة",
     category: "الفئة",
+    phone: "رقم الهاتف",
   },
   'selling-page': {
     choose_payment_method: "اختر طريقة الدفع",
@@ -100,6 +102,8 @@ export const ar = {
     complateSale: "اكمال البيع",
     close: "اغلاق",
     all: "جميع الفئات",
-    total: "المجموع"
+    total: "مجموع السعر",
+    ok: "حسنا",
+    "choose_customer_info": "اختر العميل"
   },
 };

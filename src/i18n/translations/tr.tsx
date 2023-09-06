@@ -30,7 +30,9 @@ export const tr = {
     unsucessful: "Bilinmeyen hata oluştu",
     sucessful: "İşlem başarılı",
     "not-valid-credentials": "Kullanıcı adı ve/veya şifreniz hatalı.",
-    "not-valid-paymentMethod": "ödemeler sıfırdan büyük olmalı"
+    "not-valid-payment-method": "ödemeler sıfırdan büyük olmalı",
+    "not-valid-amunt": "Toplam ödemeler Topalm Fiyata eşit olmalı"
+
   },
   navigation: {
     "home-page": "Ana Sayfa",
@@ -83,6 +85,7 @@ export const tr = {
     pictureUrl: "Fotoğraf Url'i",
     unit: "Birim",
     category: "Kategori",
+    phone: "telefon numarası",
   },
   "selling-page": {
     choose_payment_method: "Ödeme yöntemini seç",
@@ -99,6 +102,8 @@ export const tr = {
     complateSale: "Satışı tamamla",
     close: "kapat",
     all: "Tüm Categoriler",
-    total: "Toplam"
+    total: "Toplam Fiyat",
+    ok: "Tamam",
+    "choose_customer_info": "Müşteri seç"
   },
 };
