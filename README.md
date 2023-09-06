@@ -2,6 +2,8 @@
 
 Welcome to the Inventory Management Client Repository! This project is a React web application designed for efficient inventory management. It allows you to interact with a backend API to manage various aspects of your inventory. The application leverages DevExtreme DataGrids and popups for data interaction, integrates i18n for translation support, and features a dedicated selling page to display and filter products by categories.
 
+Note: username: default-user , password:123456
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Technologies Used](#technologies-used)
